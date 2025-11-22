@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal - Breaking The Limit</title>
+  
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  
+  <style>
+    /* Journal Page Specific */
+    .journal-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .page-title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .streak-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+      color: white;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .streak-badge .fire {
+      font-size: 24px;
+    }
+
+    /* Write Section */
+    .write-section {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .mood-selector {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .mood-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-md);
+      background: var(--bg-main);
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      min-width: 80px;
+    }
+
+    .mood-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mood-btn.selected {
+      border-color: var(--primary);
+      background: rgba(28, 216, 210, 0.1);
+    }
+
+    .mood-emoji {
+      font-size: 32px;
+    }
+
+    .mood-label {
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+    }
+
+    .journal-textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: var(--spacing-md);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-base);
+      line-height: 1.8;
+      resize: vertical;
+      transition: border-color var(--transition-base);
+    }
+
+    .journal-textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .journal-textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .write-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--spacing-md);
+    }
+
+    .char-count {
+      font-size: var(--font-size-sm);
+      color: var(--text-muted);
+    }
+
+    .btn-save {
+      padding: var(--spacing-sm) var(--spacing-xl);
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-save:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-save:disabled {
+      background: var(--border-medium);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Entries Section */
+    .entries-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .entries-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+
+    .filter-tab {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: var(--bg-main);
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .filter-tab:hover {
+      background: var(--bg-hover);
+    }
+
+    .filter-tab.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .entries-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .entry-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+
+    .entry-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateX(5px);
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .entry-date {
+      font-size: var(--font-size-sm);
+      color: var(--text-muted);
+    }
+
+    .entry-mood {
+      font-size: 24px;
+    }
+
+    .entry-content {
+      color: var(--text-secondary);
+      font-size: var(--font-size-base);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .entry-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+
+    .btn-entry {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-entry:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-entry.delete:hover {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: var(--spacing-3xl);
+      color: var(--text-muted);
+    }
+
+    .empty-icon {
+      font-size: 64px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .empty-text {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .empty-subtext {
+      font-size: var(--font-size-sm);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: var(--z-modal);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-base);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform var(--transition-base);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .modal-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--bg-main);
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .modal-close:hover {
+      background: var(--error);
+      color: white;
+    }
+
+    .modal-body {
+      line-height: 1.8;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--success);
+      color: white;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      font-weight: var(--font-weight-medium);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all var(--transition-base);
+      z-index: var(--z-toast);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.error {
+      background: var(--error);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+      }
+
+      .mood-selector {
+        justify-content: center;
+      }
+
+      .mood-btn {
+        min-width: 60px;
+        padding: var(--spacing-sm);
+      }
+
+      .mood-emoji {
+        font-size: 24px;
+      }
+
+      .entries-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-icon">☰</div>
+    <a href="dashboard.html"><div class="sidebar-icon">🏠</div></a>
+    <div class="sidebar-icon">💬</div>
+    <div class="sidebar-icon active">📄</div>
+    <div class="sidebar-icon">🖼️</div>
+    <div class="sidebar-icon">📅</div>
+    <div class="sidebar-icon">🏡</div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-icon">👤</div>
+  </aside>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">
+      <div class="header-logo-icon">🌸</div>
+      <span>Breaking The Limit</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-create">Create Invite Link</button>
+      <div class="header-avatar">👤</div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-container">
+    <div class="journal-container">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">📖 Nhật Ký Của Tôi</h1>
+        <div class="streak-badge">
+          <span class="fire">🔥</span>
+          <span id="streakCount">0</span> ngày liên tiếp
+        </div>
+      </div>
+
+      <!-- Write Section -->
+      <div class="write-section">
+        <h2 class="section-title">Hôm nay bạn cảm thấy thế nào?</h2>
+        
+        <!-- Mood Selector -->
+        <div class="mood-selector" id="moodSelector">
+          <button class="mood-btn" data-mood="happy">
+            <span class="mood-emoji">😊</span>
+            <span class="mood-label">Vui vẻ</span>
+          </button>
+          <button class="mood-btn" data-mood="peaceful">
+            <span class="mood-emoji">😌</span>
+            <span class="mood-label">Bình yên</span>
+          </button>
+          <button class="mood-btn" data-mood="neutral">
+            <span class="mood-emoji">😐</span>
+            <span class="mood-label">Bình thường</span>
+          </button>
+          <button class="mood-btn" data-mood="sad">
+            <span class="mood-emoji">😢</span>
+            <span class="mood-label">Buồn</span>
+          </button>
+          <button class="mood-btn" data-mood="angry">
+            <span class="mood-emoji">😡</span>
+            <span class="mood-label">Tức giận</span>
+          </button>
+          <button class="mood-btn" data-mood="anxious">
+            <span class="mood-emoji">😰</span>
+            <span class="mood-label">Lo lắng</span>
+          </button>
+          <button class="mood-btn" data-mood="tired">
+            <span class="mood-emoji">😴</span>
+            <span class="mood-label">Mệt mỏi</span>
+          </button>
+        </div>
+
+        <!-- Textarea -->
+        <textarea 
+          class="journal-textarea" 
+          id="journalInput"
+          placeholder="Viết những suy nghĩ của bạn ở đây... Đừng ngại, đây là không gian riêng của bạn 💙"
+        ></textarea>
+
+        <!-- Footer -->
+        <div class="write-footer">
+          <span class="char-count"><span id="charCount">0</span> ký tự</span>
+          <button class="btn-save" id="btnSave" disabled>💾 Lưu nhật ký</button>
+        </div>
+      </div>
+
+      <!-- Entries Section -->
+      <div class="entries-section">
+        <div class="entries-header">
+          <h2 class="section-title">📚 Các bài viết trước</h2>
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Tất cả</button>
+            <button class="filter-tab" data-filter="happy">😊</button>
+            <button class="filter-tab" data-filter="peaceful">😌</button>
+            <button class="filter-tab" data-filter="sad">😢</button>
+            <button class="filter-tab" data-filter="angry">😡</button>
+          </div>
+        </div>
+
+        <div class="entries-list" id="entriesList">
+          <!-- Entries sẽ được render bằng JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal xem chi tiết -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">📖 Chi tiết</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Đã lưu!</div>
+
+  <script src="js/journal.js"></script>
+</body>
+</html>

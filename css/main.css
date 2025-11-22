@@ -5,8 +5,17 @@
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+:root {
+  --primary: #FF7A00;
+  --primary-dark: #E56700;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+}
+
+
 body {
-  background: var(--bg-main);
+  background: #FFFFFF;
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, sans-serif;
 }
@@ -194,7 +203,8 @@ body {
   margin: 0 auto;
 }
 
-.col-left, .col-right {
+.col-left,
+.col-right {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -262,7 +272,8 @@ body {
   stroke-width: 12;
   stroke-linecap: round;
   stroke-dasharray: 502;
-  stroke-dashoffset: 125; /* 75% progress */
+  stroke-dashoffset: 125;
+  /* 75% progress */
   transition: stroke-dashoffset 1s ease;
 }
 
@@ -753,7 +764,7 @@ body {
   .dashboard-content {
     grid-template-columns: 1fr;
   }
-  
+
   .header-nav {
     display: none;
   }
@@ -763,21 +774,21 @@ body {
   .sidebar {
     width: 60px;
   }
-  
+
   .header {
     margin-left: 60px;
     padding: 0 var(--spacing-md);
   }
-  
+
   .main-container {
     margin-left: 60px;
     padding: var(--spacing-md);
   }
-  
+
   .photo-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .quick-actions-grid {
     grid-template-columns: 1fr;
   }

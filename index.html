@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cảo Dễ Thương - Nơi Bạn Được Lắng Nghe</title>
-  
+  <title>Breaking The Limit - Nơi Bạn Được Lắng Nghe</title>
+
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <style>
+    :root {
+      --primary: #FF7A00;
+      --primary-dark: #E56700;
+      --text-primary: #111827;
+      --text-secondary: #6B7280;
+      --text-muted: #9CA3AF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Landing Page Specific Styles */
     body {
-      background: linear-gradient(135deg, #F0F9FF 0%, #FFF1F7 100%);
+      background: #FFFFFF;
       font-family: 'Inter', -apple-system, sans-serif;
     }
+
 
     .landing-container {
       max-width: 1200px;
@@ -75,7 +89,7 @@
     }
 
     /* Hero Section */
-    .hero-section {
+    #hero-section {
       text-align: center;
       padding: var(--spacing-3xl) 0;
     }
@@ -145,7 +159,7 @@
       max-width: 800px;
       height: 400px;
       margin: 0 auto;
-      background: linear-gradient(135deg, #A0D8F1 0%, #B8B8FF 50%, #FFB6C1 100%);
+      background: #FFF5E6;
       border-radius: var(--radius-xl);
       display: flex;
       align-items: center;
@@ -155,7 +169,7 @@
     }
 
     /* Features Section */
-    .features-section {
+    #features-section {
       padding: var(--spacing-3xl) 0;
     }
 
@@ -205,8 +219,15 @@
       line-height: 1.6;
     }
 
+    
+    #quotes{
+      align-items: center;
+      justify-content: center;
+    }
+
     /* Footer */
-    .footer {
+    #footer {
+      width: 100%;
       text-align: center;
       padding: var(--spacing-xl) 0;
       color: var(--text-muted);
@@ -258,32 +279,33 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="landing-container">
-    
+
     <!-- Header -->
     <header class="landing-header">
       <div class="logo">
-        <span class="logo-icon">🐱</span>
-        <span>Cảo Dễ Thương</span>
+        <span class="logo-icon">🍊</span>
+        <span>Breaking The Limit</span>
       </div>
 
       <nav class="nav-links">
-        <a class="nav-link">Home</a>
-        <a class="nav-link">Tính năng</a>
-        <a class="nav-link">Về chúng tôi</a>
-        <a class="nav-link">Liên hệ</a>
+        <a href="#hero-section" class="nav-link">Home</a>
+        <a href="#features-section" class="nav-link">Feature</a>
+        <a href="#quotes-section" class="nav-link">Quote</a>
+        <a href="#footer" class="nav-link">Contact</a>
       </nav>
 
-      <button class="btn-login">Đăng nhập</button>
+      <button class="btn-login">Login</button>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section id="hero-section">
       <h1 class="hero-title">Nơi Bạn Được Lắng Nghe</h1>
       <p class="hero-subtitle">
-        Hành trình chữa lành bắt đầu từ một dòng nhật ký. 
+        Hành trình chữa lành bắt đầu từ một dòng nhật ký.
         Để chúng tôi đồng hành cùng bạn.
       </p>
 
@@ -295,21 +317,20 @@
       </div>
 
       <div class="hero-image">
-        🌸
       </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
+    <section id="features-section">
       <h2 class="section-title">Tính Năng Nổi Bật</h2>
-      
+
       <div class="features-grid">
-        
+
         <div class="feature-card">
           <div class="feature-icon">📖</div>
           <h3 class="feature-title">Nhật Ký Cảm Xúc</h3>
           <p class="feature-description">
-            Ghi lại cảm xúc mỗi ngày, theo dõi hành trình chữa lành của bạn 
+            Ghi lại cảm xúc mỗi ngày, theo dõi hành trình chữa lành của bạn
             với các công cụ phân tích AI thông minh.
           </p>
         </div>
@@ -318,7 +339,7 @@
           <div class="feature-icon">💬</div>
           <h3 class="feature-title">Quotes Mỗi Ngày</h3>
           <p class="feature-description">
-            Nhận những câu trích dẫn chữa lành, động viên bạn 
+            Nhận những câu trích dẫn chữa lành, động viên bạn
             mỗi ngày với nội dung được cá nhân hóa.
           </p>
         </div>
@@ -327,7 +348,7 @@
           <div class="feature-icon">🎵</div>
           <h3 class="feature-title">Âm Nhạc Chữa Lành</h3>
           <p class="feature-description">
-            Tạo playlist của riêng bạn, khám phá những giai điệu 
+            Tạo playlist của riêng bạn, khám phá những giai điệu
             giúp bạn thư giãn và tìm lại bình yên.
           </p>
         </div>
@@ -336,7 +357,7 @@
           <div class="feature-icon">🧘</div>
           <h3 class="feature-title">Bài Tập Tinh Thần</h3>
           <p class="feature-description">
-            Thực hành breathing, meditation, và các bài tập 
+            Thực hành breathing, meditation, và các bài tập
             grounding để cải thiện sức khỏe tinh thần.
           </p>
         </div>
@@ -345,7 +366,7 @@
           <div class="feature-icon">🤖</div>
           <h3 class="feature-title">AI Bạn Đồng Hành</h3>
           <p class="feature-description">
-            Trò chuyện với AI thấu hiểu, phân tích cảm xúc và 
+            Trò chuyện với AI thấu hiểu, phân tích cảm xúc và
             đưa ra lời khuyên phù hợp với tình trạng của bạn.
           </p>
         </div>
@@ -354,7 +375,7 @@
           <div class="feature-icon">📊</div>
           <h3 class="feature-title">Theo Dõi Tiến Trình</h3>
           <p class="feature-description">
-            Xem biểu đồ cảm xúc, thống kê hành trình và 
+            Xem biểu đồ cảm xúc, thống kê hành trình và
             nhận ra những thay đổi tích cực trong bản thân.
           </p>
         </div>
@@ -362,18 +383,27 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2024 Cảo Dễ Thương. Made with ❤️ for your mental health.</p>
-      <div class="social-links">
-        <span class="social-link">📘</span>
-        <span class="social-link">🐦</span>
-        <span class="social-link">📷</span>
-        <span class="social-link">💼</span>
-      </div>
-    </footer>
+    <!-- Quotes -->
+    <section id="quotes-section">
+      <h2 class="hero-title">Trích dẫn</h2>
+      <p class="hero-subtitle">
+        "Giới hạn chỉ tồn tại trong tâm trí, khi bạn tin mình có thể – bạn đã đi được nửa chặng đường."
+      </p>
+  </section>
 
-  </div>
+  <!-- Footer -->
+  <footer id="footer">
+    <p>&copy; 2025 Breaking The Limit. Made with ❤️ for your mental health.</p>
+    <div class="social-links">
+      <span class="social-link">📘</span>
+      <span class="social-link">🐦</span>
+      <span class="social-link">📷</span>
+      <span class="social-link">💼</span>
+    </div>
+  </footer>
+
+
 
 </body>
+
 </html>

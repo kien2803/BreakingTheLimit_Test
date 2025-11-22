@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Cảo Dễ Thương</title>
-  
+
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <!-- ==================== SIDEBAR ==================== -->
@@ -21,9 +23,9 @@
     <div class="sidebar-icon">🖼️</div>
     <div class="sidebar-icon">📅</div>
     <div class="sidebar-icon">🏡</div>
-    
+
     <div class="sidebar-spacer"></div>
-    
+
     <div class="sidebar-icon">👤</div>
   </aside>
 
@@ -70,14 +72,14 @@
   <!-- ==================== MAIN CONTENT ==================== -->
   <main class="main-container">
     <div class="dashboard-content">
-      
+
       <!-- ========== LEFT COLUMN ========== -->
       <div class="col-left">
-        
+
         <!-- CARD 1: Dashboard Overview -->
         <div class="card">
           <h3 class="card-title">Dashboard Overview</h3>
-          
+
           <!-- Streak Circle -->
           <div class="streak-container">
             <div class="streak-circle">
@@ -89,8 +91,8 @@
                     <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
                   </linearGradient>
                 </defs>
-                <circle cx="100" cy="100" r="80" class="circle-bg"/>
-                <circle cx="100" cy="100" r="80" class="circle-progress"/>
+                <circle cx="100" cy="100" r="80" class="circle-bg" />
+                <circle cx="100" cy="100" r="80" class="circle-progress" />
               </svg>
               <div class="streak-number">
                 <span class="big-number">45</span>
@@ -113,10 +115,12 @@
         <div class="card">
           <h3 class="card-title">Quick Actions</h3>
           <div class="quick-actions-grid">
-            <button class="action-btn action-primary">
-              <span class="action-btn-icon">✏️</span>
-              Write Journal
-            </button>
+            <a href="journal.html">
+              <button class="action-btn action-primary">
+                <span class="action-btn-icon">✏️</span>
+                Write Journal
+              </button>
+            </a>
             <button class="action-btn action-secondary">
               <span class="action-btn-icon">💬</span>
               Chat with AI
@@ -135,15 +139,15 @@
         <!-- CARD 3: Connections -->
         <div class="card">
           <h3 class="card-title">Connections</h3>
-          
+
           <div class="connection-section">
             <h4 class="connection-title">Parent Child</h4>
-            
+
             <div class="connection-row">
               <span class="connection-label">Share Mood Data</span>
               <div class="toggle-switch active"></div>
             </div>
-            
+
             <div class="connection-row">
               <span class="connection-label">Invite Parent</span>
               <button class="btn-invite">Invite</button>
@@ -163,11 +167,11 @@
 
       <!-- ========== RIGHT COLUMN ========== -->
       <div class="col-right">
-        
+
         <!-- CARD 4: AI Chat Friend -->
         <div class="card card-ai-chat">
           <h3 class="card-title">AI Chat Friend</h3>
-          
+
           <div class="chat-avatar-section">
             <div class="chat-avatar">🐱</div>
             <div class="chat-info">
@@ -185,7 +189,7 @@
         <!-- CARD 5: Mood Check -->
         <div class="card">
           <h3 class="card-title">Hôm nay bạn thế nháo?</h3>
-          
+
           <div class="mood-tabs">
             <button class="mood-tab active">Bình yên</button>
             <button class="mood-tab">Căng thẳng</button>
@@ -204,7 +208,7 @@
         <!-- CARD 6: Latest Memories -->
         <div class="card">
           <h3 class="card-title">Latest Memories</h3>
-          
+
           <div class="photo-grid">
             <div class="photo-item">
               <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200" alt="Memory">
@@ -238,7 +242,7 @@
         <!-- CARD 7: Drawing Canvas Preview -->
         <div class="card">
           <h3 class="card-title">Drawing Canvas Preview</h3>
-          
+
           <div class="canvas-preview">
             <div class="canvas-thumbnail">🎨</div>
           </div>
@@ -263,4 +267,5 @@
   <script src="js/app.js"></script>
 
 </body>
+
 </html>
