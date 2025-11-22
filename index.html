@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cảo Dễ Thương - Nơi Bạn Được Lắng Nghe</title>
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <style>
+    /* Landing Page Specific Styles */
+    body {
+      background: linear-gradient(135deg, #F0F9FF 0%, #FFF1F7 100%);
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    .landing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-xl);
+    }
+
+    /* Header */
+    .landing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-lg) 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .logo-icon {
+      font-size: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-xl);
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      transition: color var(--transition-base);
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .btn-login {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-full);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-login:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .hero-title {
+      font-size: var(--font-size-5xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-xl);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .btn-cta-primary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-cta-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-cta-secondary {
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    .btn-cta-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #A0D8F1 0%, #B8B8FF 50%, #FFB6C1 100%);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      box-shadow: var(--shadow-xl);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacing-2xl);
+      color: var(--text-primary);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .feature-card {
+      background: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .feature-icon {
+      font-size: 64px;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .feature-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-primary);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: var(--spacing-xl) 0;
+      color: var(--text-muted);
+      font-size: var(--font-size-sm);
+      margin-top: var(--spacing-3xl);
+    }
+
+    .social-links {
+      display: flex;
+      gap: var(--spacing-md);
+      justify-content: center;
+      margin-top: var(--spacing-md);
+      font-size: 24px;
+    }
+
+    .social-link {
+      cursor: pointer;
+      transition: transform var(--transition-base);
+    }
+
+    .social-link:hover {
+      transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .hero-subtitle {
+        font-size: var(--font-size-lg);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-cta-primary,
+      .btn-cta-secondary {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="landing-container">
+    
+    <!-- Header -->
+    <header class="landing-header">
+      <div class="logo">
+        <span class="logo-icon">🐱</span>
+        <span>Cảo Dễ Thương</span>
+      </div>
+
+      <nav class="nav-links">
+        <a class="nav-link">Home</a>
+        <a class="nav-link">Tính năng</a>
+        <a class="nav-link">Về chúng tôi</a>
+        <a class="nav-link">Liên hệ</a>
+      </nav>
+
+      <button class="btn-login">Đăng nhập</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="hero-title">Nơi Bạn Được Lắng Nghe</h1>
+      <p class="hero-subtitle">
+        Hành trình chữa lành bắt đầu từ một dòng nhật ký. 
+        Để chúng tôi đồng hành cùng bạn.
+      </p>
+
+      <div class="hero-cta">
+        <a href="dashboard.html">
+          <button class="btn-cta-primary">Bắt đầu ngay</button>
+        </a>
+        <button class="btn-cta-secondary">Tìm hiểu thêm</button>
+      </div>
+
+      <div class="hero-image">
+        🌸
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <h2 class="section-title">Tính Năng Nổi Bật</h2>
+      
+      <div class="features-grid">
+        
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <h3 class="feature-title">Nhật Ký Cảm Xúc</h3>
+          <p class="feature-description">
+            Ghi lại cảm xúc mỗi ngày, theo dõi hành trình chữa lành của bạn 
+            với các công cụ phân tích AI thông minh.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3 class="feature-title">Quotes Mỗi Ngày</h3>
+          <p class="feature-description">
+            Nhận những câu trích dẫn chữa lành, động viên bạn 
+            mỗi ngày với nội dung được cá nhân hóa.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎵</div>
+          <h3 class="feature-title">Âm Nhạc Chữa Lành</h3>
+          <p class="feature-description">
+            Tạo playlist của riêng bạn, khám phá những giai điệu 
+            giúp bạn thư giãn và tìm lại bình yên.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧘</div>
+          <h3 class="feature-title">Bài Tập Tinh Thần</h3>
+          <p class="feature-description">
+            Thực hành breathing, meditation, và các bài tập 
+            grounding để cải thiện sức khỏe tinh thần.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3 class="feature-title">AI Bạn Đồng Hành</h3>
+          <p class="feature-description">
+            Trò chuyện với AI thấu hiểu, phân tích cảm xúc và 
+            đưa ra lời khuyên phù hợp với tình trạng của bạn.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Theo Dõi Tiến Trình</h3>
+          <p class="feature-description">
+            Xem biểu đồ cảm xúc, thống kê hành trình và 
+            nhận ra những thay đổi tích cực trong bản thân.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Cảo Dễ Thương. Made with ❤️ for your mental health.</p>
+      <div class="social-links">
+        <span class="social-link">📘</span>
+        <span class="social-link">🐦</span>
+        <span class="social-link">📷</span>
+        <span class="social-link">💼</span>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
