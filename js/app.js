@@ -4,13 +4,31 @@
 
 console.log('🚀 Breaking The Limit - Loaded!');
 
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll('.fade-in-section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // chỉ chạy 1 lần
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+});
+
+
 // ==========================================
 // 1. SIDEBAR NAVIGATION
 // ==========================================
 const sidebarIcons = document.querySelectorAll('.sidebar-icon');
 
 sidebarIcons.forEach(icon => {
-  icon.addEventListener('click', function() {
+  icon.addEventListener('click', function () {
     // Bỏ active tất cả
     sidebarIcons.forEach(i => i.classList.remove('active'));
     // Thêm active cho icon được click
@@ -25,7 +43,7 @@ sidebarIcons.forEach(icon => {
 const navItems = document.querySelectorAll('.nav-item');
 
 navItems.forEach(item => {
-  item.addEventListener('click', function() {
+  item.addEventListener('click', function () {
     navItems.forEach(i => i.classList.remove('active'));
     this.classList.add('active');
   });
@@ -38,9 +56,9 @@ navItems.forEach(item => {
 const toggles = document.querySelectorAll('.toggle-switch');
 
 toggles.forEach(toggle => {
-  toggle.addEventListener('click', function() {
+  toggle.addEventListener('click', function () {
     this.classList.toggle('active');
-    
+
     // Log trạng thái
     const isActive = this.classList.contains('active');
     console.log('Toggle:', isActive ? 'ON' : 'OFF');
@@ -54,10 +72,10 @@ toggles.forEach(toggle => {
 const moodTabs = document.querySelectorAll('.mood-tab');
 
 moodTabs.forEach(tab => {
-  tab.addEventListener('click', function() {
+  tab.addEventListener('click', function () {
     moodTabs.forEach(t => t.classList.remove('active'));
     this.classList.add('active');
-    
+
     console.log('Mood selected:', this.textContent);
   });
 });
@@ -69,9 +87,9 @@ moodTabs.forEach(tab => {
 const moodTags = document.querySelectorAll('.mood-tag');
 
 moodTags.forEach(tag => {
-  tag.addEventListener('click', function() {
+  tag.addEventListener('click', function () {
     this.classList.toggle('selected');
-    
+
     // Thêm style khi selected
     if (this.classList.contains('selected')) {
       this.style.background = 'var(--primary)';
@@ -105,19 +123,19 @@ const aiResponses = [
 
 function sendMessage() {
   const message = chatInput.value.trim();
-  
+
   if (message === '') return;
-  
+
   console.log('User:', message);
-  
+
   // Random câu trả lời
   const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-  
+
   // Hiển thị alert tạm thời (sau này sẽ làm UI chat thật)
   setTimeout(() => {
     alert(`🐱 Kem Buồn: ${randomResponse}`);
   }, 500);
-  
+
   // Xóa input
   chatInput.value = '';
 }
@@ -125,7 +143,7 @@ function sendMessage() {
 btnSend.addEventListener('click', sendMessage);
 
 // Gửi khi nhấn Enter
-chatInput.addEventListener('keypress', function(e) {
+chatInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     sendMessage();
   }
@@ -138,7 +156,7 @@ chatInput.addEventListener('keypress', function(e) {
 const photoItems = document.querySelectorAll('.photo-item');
 
 photoItems.forEach(item => {
-  item.addEventListener('click', function() {
+  item.addEventListener('click', function () {
     const img = this.querySelector('img');
     if (img) {
       // Mở ảnh trong tab mới (tạm thời)
@@ -155,17 +173,17 @@ photoItems.forEach(item => {
 const actionBtns = document.querySelectorAll('.action-btn');
 
 actionBtns.forEach(btn => {
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', function () {
     const action = this.textContent.trim();
-    
-    switch(action) {
+
+    switch (action) {
       case 'Write Journal':
         alert('📝 Tính năng viết nhật ký sẽ được thêm sau!');
         break;
       case 'Chat with AI':
         // Scroll đến chat section
-        document.querySelector('.card-ai-chat').scrollIntoView({ 
-          behavior: 'smooth' 
+        document.querySelector('.card-ai-chat').scrollIntoView({
+          behavior: 'smooth'
         });
         chatInput.focus();
         break;
@@ -186,11 +204,11 @@ actionBtns.forEach(btn => {
 const inviteBtns = document.querySelectorAll('.btn-invite');
 
 inviteBtns.forEach(btn => {
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', function () {
     // Tạo link giả
     const inviteCode = Math.random().toString(36).substring(2, 10);
     const inviteLink = `breakingthelimit.com/invite/${inviteCode}`;
-    
+
     // Copy vào clipboard
     navigator.clipboard.writeText(inviteLink).then(() => {
       alert(`✅ Đã copy link mời!\n\n${inviteLink}`);
@@ -207,10 +225,10 @@ inviteBtns.forEach(btn => {
 const btnCreate = document.querySelector('.btn-create');
 
 if (btnCreate) {
-  btnCreate.addEventListener('click', function() {
+  btnCreate.addEventListener('click', function () {
     const inviteCode = Math.random().toString(36).substring(2, 10);
     const inviteLink = `breakingthelimit.com/invite/${inviteCode}`;
-    
+
     navigator.clipboard.writeText(inviteLink).then(() => {
       alert(`✅ Đã tạo và copy link!\n\n${inviteLink}`);
     });
@@ -227,11 +245,11 @@ const bigNumber = document.querySelector('.big-number');
 if (bigNumber) {
   const targetNumber = parseInt(bigNumber.textContent);
   let currentNumber = 0;
-  
+
   const animateStreak = setInterval(() => {
     currentNumber += 1;
     bigNumber.textContent = currentNumber;
-    
+
     if (currentNumber >= targetNumber) {
       clearInterval(animateStreak);
     }
@@ -245,17 +263,17 @@ if (bigNumber) {
 const btnPrimary = document.querySelector('.btn-primary');
 
 if (btnPrimary) {
-  btnPrimary.addEventListener('click', function() {
+  btnPrimary.addEventListener('click', function () {
     // Lấy mood đã chọn
     const selectedTab = document.querySelector('.mood-tab.active');
     const selectedTags = document.querySelectorAll('.mood-tag.selected');
-    
+
     const mood = selectedTab ? selectedTab.textContent : 'Chưa chọn';
     const tags = Array.from(selectedTags).map(t => t.textContent);
-    
+
     console.log('Mood:', mood);
     console.log('Tags:', tags);
-    
+
     alert(`✅ Đã lưu mood hôm nay!\n\nMood: ${mood}\nTags: ${tags.join(', ') || 'Không có'}`);
   });
 }
@@ -267,7 +285,7 @@ if (btnPrimary) {
 const btnViewAll = document.querySelector('.btn-view-all');
 
 if (btnViewAll) {
-  btnViewAll.addEventListener('click', function() {
+  btnViewAll.addEventListener('click', function () {
     alert('🖼️ Trang xem tất cả ảnh sẽ được thêm sau!');
   });
 }
@@ -280,14 +298,14 @@ const btnCanvasInvite = document.querySelector('.btn-canvas-invite');
 const btnCanvasClose = document.querySelector('.btn-canvas-close');
 
 if (btnCanvasInvite) {
-  btnCanvasInvite.addEventListener('click', function() {
+  btnCanvasInvite.addEventListener('click', function () {
     const inviteCode = Math.random().toString(36).substring(2, 10);
     alert(`🎨 Mời bạn vẽ cùng!\n\nLink: breakingthelimit.com/draw/${inviteCode}`);
   });
 }
 
 if (btnCanvasClose) {
-  btnCanvasClose.addEventListener('click', function() {
+  btnCanvasClose.addEventListener('click', function () {
     const card = this.closest('.card');
     if (card) {
       card.style.display = 'none';
@@ -300,12 +318,12 @@ if (btnCanvasClose) {
 // 15. RANDOM USERNAME GENERATOR
 // ==========================================
 const animals = [
-  "Chó", "Mèo", "Gấu", "Cáo", "Thỏ", 
+  "Chó", "Mèo", "Gấu", "Cáo", "Thỏ",
   "Sói", "Hổ", "Rồng", "Chim", "Cá"
 ];
 
 const traits = [
-  "Lạnh Lùng", "Vui Vẻ", "Dịu Dàng", "Hài Hước", 
+  "Lạnh Lùng", "Vui Vẻ", "Dịu Dàng", "Hài Hước",
   "Bí Ẩn", "Đáng Yêu", "Mạnh Mẽ", "Tinh Nghịch"
 ];
 

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập - Breaking The Limit</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <script src="js/darkmode.js"></script>
+</head>
+
+<style>
+  /* ==========================================
+   AUTH PAGE STYLES
+   ========================================== */
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffc48e;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .auth-container {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* ==========================================
+   LOGO
+   ========================================== */
+
+  .auth-logo {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+  }
+
+  .logo-icon {
+    font-size: 60px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .auth-logo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+
+  .auth-logo p {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* ==========================================
+   AUTH BOX
+   ========================================== */
+
+  .auth-box {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Tabs */
+  .auth-tabs {
+    display: flex;
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 25px;
+  }
+
+  .auth-tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .auth-tab.active {
+    background: white;
+    color: #1f2937;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Form */
+  .auth-form {
+    display: none;
+  }
+
+  .auth-form.active {
+    display: block;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .form-group input::placeholder {
+    color: #9ca3af;
+  }
+
+  /* Role Selector */
+  .role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .role-btn {
+    padding: 16px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .role-btn:hover {
+    border-color: #667eea;
+  }
+
+  .role-btn.selected {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+  }
+
+  .role-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .role-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .role-desc {
+    font-size: 11px;
+    color: #6b7280;
+    display: block;
+  }
+
+  /* Submit Button */
+  .btn-auth {
+    width: 100%;
+    padding: 14px;
+    background-color: #ffc48e;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  /* Hint */
+  .auth-hint {
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 20px;
+  }
+
+  .auth-hint a {
+    color: #ffc48e;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .auth-hint a:hover {
+    text-decoration: underline;
+  }
+
+  /* ==========================================
+   USERNAME PREVIEW
+   ========================================== */
+
+  .username-preview {
+    text-align: center;
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    display: none;
+  }
+
+  .username-preview.show {
+    display: block;
+  }
+
+  .username-preview p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .random-username {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .btn-refresh {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-refresh:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* ==========================================
+   TOAST
+   ========================================== */
+
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1f2937;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .toast.success {
+    background: #10b981;
+  }
+
+  .toast.error {
+    background: #ef4444;
+  }
+
+  /* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+  @media (max-width: 480px) {
+    .auth-box {
+      padding: 25px 20px;
+    }
+
+    .role-selector {
+      grid-template-columns: 1fr;
+    }
+
+    .auth-logo h1 {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<body class="auth-page">
+
+  <div class="auth-container">
+
+    <!-- Logo -->
+    <div class="auth-logo">
+      <span class="logo-icon">🍊</span>
+      <h1>Breaking The Limit</h1>
+      <p>Nơi bạn được lắng nghe</p>
+    </div>
+
+    <!-- Auth Box -->
+    <div class="auth-box">
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Đăng nhập</button>
+        <button class="auth-tab" data-tab="register">Đăng ký</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form active">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-auth">Đăng nhập</button>
+
+        <p class="auth-hint">Chưa có tài khoản? <a href="#" id="goToRegister">Đăng ký ngay</a></p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Mật khẩu</label>
+          <input type="password" id="regPassword" placeholder="Tối thiểu 6 ký tự" required minlength="6">
+        </div>
+
+        <div class="form-group">
+          <label>Xác nhận mật khẩu</label>
+          <input type="password" id="regConfirm" placeholder="Nhập lại mật khẩu" required>
+        </div>
+
+        <div class="form-group">
+          <label>Bạn là ai?</label>
+          <div class="role-selector">
+            <button type="button" class="role-btn selected" data-role="child">
+              <span class="role-icon">👤</span>
+              <span class="role-name">Con cái</span>
+              <span class="role-desc">Viết nhật ký, theo dõi cảm xúc</span>
+            </button>
+            <button type="button" class="role-btn" data-role="family">
+              <span class="role-icon">👨‍👩‍👧</span>
+              <span class="role-name">Gia đình</span>
+              <span class="role-desc">Đồng hành cùng con</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-auth">Tạo tài khoản</button>
+
+        <p class="auth-hint">Đã có tài khoản? <a href="#" id="goToLogin">Đăng nhập</a></p>
+      </form>
+
+    </div>
+
+    <!-- Random Username Preview -->
+    <div class="username-preview" id="usernamePreview">
+      <p>Username của bạn sẽ là:</p>
+      <div class="random-username" id="randomUsername">🐱 Mèo Dễ Thương</div>
+      <button type="button" class="btn-refresh" id="refreshUsername">🔄 Đổi tên khác</button>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <script src="js/darkmode.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat AI - Breaking The Limit</title>
+
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <script src="js/darkmode.js"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-icon">☰</div>
+    <a href="dashboard.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-home"></i></div>
+    </a>
+    <a href="chat.html">
+      <div class="sidebar-icon active"><i class="fi fi-sr-comment-alt-dots"></i></div>
+    </a>
+    <a href="journal.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-document"></i></div>
+    </a>
+    <a href="photos.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-icon" id="btnSettings">⚙️</div>
+  </aside>
+
+  <!-- MAIN CHAT -->
+  <main class="chat-container">
+
+    <!-- Chat Header -->
+    <header class="chat-header">
+      <div class="bot-info">
+        <div class="bot-avatar" id="botAvatar">🐱</div>
+        <div class="bot-details">
+          <h2 class="bot-name" id="botName">Mèo Healing</h2>
+          <span class="bot-status">● Đang online</span>
+        </div>
+      </div>
+      <button class="btn-customize" id="btnCustomize">✨ Tùy chỉnh</button>
+    </header>
+
+    <!-- Messages Area -->
+    <div class="messages-area" id="messagesArea">
+      <!-- Messages sẽ render ở đây -->
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Nhắn gì đó..." autocomplete="off">
+      <button class="btn-send" id="btnSend">
+        <span>🚀</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- MODAL Customize Bot -->
+  <div class="modal-overlay" id="customizeModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>✨ Tùy chỉnh bạn AI</h3>
+        <button class="modal-close" id="closeCustomize">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Chọn Avatar -->
+        <div class="form-group">
+          <label>Chọn avatar</label>
+          <div class="avatar-options" id="avatarOptions">
+            <button class="avatar-btn selected" data-avatar="🐱">🐱</button>
+            <button class="avatar-btn" data-avatar="🐶">🐶</button>
+            <button class="avatar-btn" data-avatar="🐰">🐰</button>
+            <button class="avatar-btn" data-avatar="🦊">🦊</button>
+            <button class="avatar-btn" data-avatar="🐻">🐻</button>
+            <button class="avatar-btn" data-avatar="🐼">🐼</button>
+            <button class="avatar-btn" data-avatar="🦄">🦄</button>
+            <button class="avatar-btn" data-avatar="🤖">🤖</button>
+          </div>
+        </div>
+
+        <!-- Đặt tên -->
+        <div class="form-group">
+          <label>Đặt tên cho bot</label>
+          <input type="text" id="botNameInput" class="form-input" placeholder="Ví dụ: Mèo Healing">
+        </div>
+
+        <!-- Chọn tính cách -->
+        <div class="form-group">
+          <label>Tính cách</label>
+          <div class="personality-options" id="personalityOptions">
+            <button class="personality-btn selected" data-personality="caring">
+              💙 Ấm áp
+            </button>
+            <button class="personality-btn" data-personality="cheerful">
+              🌟 Vui vẻ
+            </button>
+            <button class="personality-btn" data-personality="calm">
+              🌿 Điềm tĩnh`
+            </button>
+            <button class="personality-btn" data-personality="funny">
+              😄 Hài hước
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-save-settings" id="btnSaveSettings">💾 Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/chat.js"></script>
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <script src="js/darkmode.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+
+</html>

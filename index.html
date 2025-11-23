@@ -5,19 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Breaking The Limit - Nơi Bạn Được Lắng Nghe</title>
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
 
   <!-- CSS Files -->
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <script src="js/darkmode.js"></script>
   <style>
-    :root {
-      --primary: #FF7A00;
-      --primary-dark: #E56700;
-      --text-primary: #111827;
-      --text-secondary: #6B7280;
-      --text-muted: #9CA3AF;
-    }
-
     html {
       scroll-behavior: smooth;
     }
@@ -87,6 +85,7 @@
       background: var(--primary);
       color: white;
     }
+
 
     /* Hero Section */
     #hero-section {
@@ -202,6 +201,9 @@
     }
 
     .feature-icon {
+      color: #FF7A00;
+      justify-self: center;
+      width: 80px;
       font-size: 64px;
       margin-bottom: var(--spacing-md);
     }
@@ -219,8 +221,11 @@
       line-height: 1.6;
     }
 
-    
-    #quotes{
+
+    #quotes-section {
+      padding: 100px;
+      height: auto;
+      text-align: center;
       align-items: center;
       justify-content: center;
     }
@@ -298,7 +303,7 @@
         <a href="#footer" class="nav-link">Contact</a>
       </nav>
 
-      <button class="btn-login">Login</button>
+      <a href="login.html"><button class="btn-login">Đăng nhập</button></a>
     </header>
 
     <!-- Hero Section -->
@@ -310,7 +315,7 @@
       </p>
 
       <div class="hero-cta">
-        <a href="dashboard.html">
+        <a href="login.html">
           <button class="btn-cta-primary">Bắt đầu ngay</button>
         </a>
         <button class="btn-cta-secondary">Tìm hiểu thêm</button>
@@ -327,7 +332,7 @@
       <div class="features-grid">
 
         <div class="feature-card">
-          <div class="feature-icon">📖</div>
+          <div class="feature-icon"><img src="assets/journal-alt.png" alt=""></div>
           <h3 class="feature-title">Nhật Ký Cảm Xúc</h3>
           <p class="feature-description">
             Ghi lại cảm xúc mỗi ngày, theo dõi hành trình chữa lành của bạn
@@ -336,7 +341,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">💬</div>
+          <div class="feature-icon"><i class="fi fi-rr-quote-right"></i></div>
           <h3 class="feature-title">Quotes Mỗi Ngày</h3>
           <p class="feature-description">
             Nhận những câu trích dẫn chữa lành, động viên bạn
@@ -345,7 +350,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🎵</div>
+          <div class="feature-icon"><i class="fi fi-sr-music-alt"></i></div>
           <h3 class="feature-title">Âm Nhạc Chữa Lành</h3>
           <p class="feature-description">
             Tạo playlist của riêng bạn, khám phá những giai điệu
@@ -354,7 +359,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🧘</div>
+          <div class="feature-icon"><img src="assets/meditation.png" alt=""></div>
           <h3 class="feature-title">Bài Tập Tinh Thần</h3>
           <p class="feature-description">
             Thực hành breathing, meditation, và các bài tập
@@ -363,7 +368,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🤖</div>
+          <div class="feature-icon"><i class="fi fi-sr-user-robot"></i></div>
           <h3 class="feature-title">AI Bạn Đồng Hành</h3>
           <p class="feature-description">
             Trò chuyện với AI thấu hiểu, phân tích cảm xúc và
@@ -372,7 +377,7 @@
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📊</div>
+          <div class="feature-icon"><i class="fi fi-sr-signal-alt-2"></i></div>
           <h3 class="feature-title">Theo Dõi Tiến Trình</h3>
           <p class="feature-description">
             Xem biểu đồ cảm xúc, thống kê hành trình và
@@ -389,20 +394,23 @@
       <p class="hero-subtitle">
         "Giới hạn chỉ tồn tại trong tâm trí, khi bạn tin mình có thể – bạn đã đi được nửa chặng đường."
       </p>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <p>&copy; 2025 Breaking The Limit. Made with ❤️ for your mental health.</p>
-    <div class="social-links">
-      <span class="social-link">📘</span>
-      <span class="social-link">🐦</span>
-      <span class="social-link">📷</span>
-      <span class="social-link">💼</span>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer id="footer">
+      <p>&copy; 2025 Breaking The Limit. Made with ❤️ for your mental health.</p>
+      <div class="social-links">
+        <span class="social-link">📘</span>
+        <span class="social-link">🐦</span>
+        <span class="social-link">📷</span>
+        <span class="social-link">💼</span>
+      </div>
+    </footer>
 
-
+    <link rel="stylesheet" href="css/darkmode.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="js/darkmode.js"></script>
+    <script src="js/settings.js"></script>
 
 </body>
 

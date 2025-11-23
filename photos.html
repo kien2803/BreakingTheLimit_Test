@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos - Breaking The Limit</title>
+
+
+    <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+    <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/photos.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <script src="js/darkmode.js"></script>
+</head>
+
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-icon">☰</div>
+        <a href="dashboard.html">
+            <div class="sidebar-icon"><i class="fi fi-sr-home"></i></div>
+        </a>
+        <a href="chat.html">
+            <div class="sidebar-icon"><i class="fi fi-sr-comment-alt-dots"></i></div>
+        </a>
+        <a href="journal.html">
+            <div class="sidebar-icon"><i class="fi fi-sr-document"></i></div>
+        </a>
+        <a href="photos.html">
+            <div class="sidebar-icon active"><i class="fi fi-sr-picture"></i></div>
+        </a>
+
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-icon">👤</div>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">
+            <div class="header-logo-icon">📸</div>
+            <span>My Memories</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn-upload" id="btnUpload">
+                <span>📤</span> Upload ảnh
+            </button>
+            <button class="btn-replay" id="btnReplay">
+                <span>▶️</span> Replay
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-container">
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-box">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <div class="upload-content" id="uploadContent">
+                    <span class="upload-icon">📷</span>
+                    <p>Click để chọn ảnh</p>
+                    <p class="upload-hint">hoặc kéo thả ảnh vào đây</p>
+                </div>
+                <img id="previewImage" class="preview-image" style="display: none;">
+            </div>
+
+            <div class="caption-section">
+                <textarea id="captionInput" class="caption-input" placeholder="Viết caption cho ảnh..."></textarea>
+                <div class="upload-actions">
+                    <button class="btn-cancel" id="btnCancel">Hủy</button>
+                    <button class="btn-save-photo" id="btnSavePhoto">💾 Lưu ảnh</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photos Grid -->
+        <div class="photos-container">
+            <div class="photos-header">
+                <h2>Kỷ niệm của bạn (<span id="photoCount">0</span>)</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Tất cả</button>
+                    <button class="filter-btn" data-filter="today">Hôm nay</button>
+                    <button class="filter-btn" data-filter="week">Tuần này</button>
+                </div>
+            </div>
+
+            <div class="photos-grid" id="photosGrid">
+                <!-- Photos render here -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <span class="empty-icon">📸</span>
+                <p>Chưa có ảnh nào</p>
+                <p class="empty-hint">Upload ảnh đầu tiên của bạn!</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- REPLAY MODAL -->
+    <div class="replay-modal" id="replayModal">
+        <button class="replay-close" id="replayClose">✕</button>
+
+        <div class="replay-content">
+            <img id="replayImage" class="replay-image">
+            <div class="replay-caption" id="replayCaption"></div>
+            <div class="replay-date" id="replayDate"></div>
+        </div>
+
+        <div class="replay-controls">
+            <button class="replay-btn" id="replayPrev">◀</button>
+            <button class="replay-btn replay-play" id="replayPlay">▶️</button>
+            <button class="replay-btn" id="replayNext">▶</button>
+        </div>
+
+        <div class="replay-progress">
+            <div class="replay-progress-bar" id="replayProgressBar"></div>
+        </div>
+    </div>
+
+    <!-- VIEW PHOTO MODAL -->
+    <div class="view-modal" id="viewModal">
+        <button class="view-close" id="viewClose">✕</button>
+        <img id="viewImage" class="view-image">
+        <div class="view-info">
+            <p class="view-caption" id="viewCaption"></p>
+            <p class="view-date" id="viewDate"></p>
+        </div>
+        <button class="btn-delete-photo" id="btnDeletePhoto">🗑️ Xóa ảnh</button>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+    <link rel="stylesheet" href="css/darkmode.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <script src="js/darkmode.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/photos.js"></script>
+</body>
+
+</html>

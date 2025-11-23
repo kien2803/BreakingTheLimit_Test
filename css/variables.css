@@ -4,8 +4,134 @@
 
 :root {
   /* ============ COLORS ============ */
-  
+
   /* Primary Colors */
+  --primary: #1CD8D2;
+  --primary-dark: #14B8B3;
+  --primary-light: #5FE3DF;
+
+  --secondary: #A855F7;
+  --secondary-dark: #9333EA;
+  --secondary-light: #C084FC;
+
+  --accent: #FF6B9D;
+  --accent-dark: #F43F5E;
+  --accent-light: #FCA5BA;
+
+  /* Background Colors */
+  --bg-main: #F3F4F6;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #FAFAFA;
+  --bg-hover: #F9FAFB;
+
+  /* Text Colors */
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --text-white: #FFFFFF;
+
+  /* Mood Colors */
+  --mood-joy: #FFB6C1;
+  --mood-calm: #A0D8F1;
+  --mood-sad: #B8B8FF;
+  --mood-angry: #FFB8B8;
+  --mood-neutral: #E5E7EB;
+
+  /* Border Colors */
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+  --border-dark: #9CA3AF;
+
+  /* Status Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+
+
+  /* ============ SPACING ============ */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+
+  /* ============ BORDER RADIUS ============ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+
+  /* ============ SHADOWS ============ */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+
+  /* ============ TYPOGRAPHY ============ */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  /* ============ TRANSITIONS ============ */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+
+  /* ============ Z-INDEX ============ */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+}
+
+
+/* ============ DARK MODE (Optional - Phase 2) ============ */
+/* ==========================================
+   THAY THẾ phần [data-theme="dark"] trong css/variables.css
+   ========================================== */
+
+[data-theme="dark"] {
+  /* Background - Xanh đen mượt mà */
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sidebar: #1e293b;
+  --bg-hover: #334155;
+  
+  /* Text - Trắng xám dễ đọc */
+  --text-primary: #f1f5f9;      /* Trắng sáng cho title/heading */
+  --text-secondary: #cbd5e1;    /* Xám nhạt cho text thường */
+  --text-muted: #94a3b8;        /* Xám đậm cho hint/placeholder */
+  --text-white: #ffffff;
+  
+  /* Border - Mềm mại hơn */
+  --border-light: #334155;
+  --border-medium: #475569;
+  --border-dark: #64748b;
+  
+  /* Primary Colors - Giữ nguyên, rất đẹp */
   --primary: #1CD8D2;
   --primary-dark: #14B8B3;
   --primary-light: #5FE3DF;
@@ -18,108 +144,185 @@
   --accent-dark: #F43F5E;
   --accent-light: #FCA5BA;
   
-  /* Background Colors */
-  --bg-main: #F3F4F6;
-  --bg-card: #FFFFFF;
-  --bg-sidebar: #FAFAFA;
-  --bg-hover: #F9FAFB;
-  
-  /* Text Colors */
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --text-muted: #9CA3AF;
-  --text-white: #FFFFFF;
-  
-  /* Mood Colors */
-  --mood-joy: #FFB6C1;
-  --mood-calm: #A0D8F1;
-  --mood-sad: #B8B8FF;
-  --mood-angry: #FFB8B8;
-  --mood-neutral: #E5E7EB;
-  
-  /* Border Colors */
-  --border-light: #E5E7EB;
-  --border-medium: #D1D5DB;
-  --border-dark: #9CA3AF;
-  
   /* Status Colors */
   --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
   --info: #3B82F6;
   
+  /* Mood Colors - Sáng hơn trong dark mode */
+  --mood-joy: #FFB6C1;
+  --mood-calm: #7BC5E5;
+  --mood-sad: #B8B8FF;
+  --mood-angry: #FF9999;
+  --mood-neutral: #94A3B8;
   
-  /* ============ SPACING ============ */
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  
-  
-  /* ============ BORDER RADIUS ============ */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-full: 9999px;
-  
-  
-  /* ============ SHADOWS ============ */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
-  
-  
-  /* ============ TYPOGRAPHY ============ */
-  --font-size-xs: 12px;
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 20px;
-  --font-size-2xl: 24px;
-  --font-size-3xl: 30px;
-  --font-size-4xl: 36px;
-  --font-size-5xl: 48px;
-  
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  
-  
-  /* ============ TRANSITIONS ============ */
-  --transition-fast: 0.15s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
-  
-  
-  /* ============ Z-INDEX ============ */
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  --z-toast: 600;
+  /* Shadows - Đậm hơn để nổi bật */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.8);
 }
 
+/* ==========================================
+   FIX SPECIFIC COMPONENTS
+   ========================================== */
 
-/* ============ DARK MODE (Optional - Phase 2) ============ */
-[data-theme="dark"] {
-  --bg-main: #111827;
-  --bg-card: #1F2937;
-  --bg-sidebar: #1F2937;
-  --bg-hover: #374151;
-  
-  --text-primary: #F9FAFB;
-  --text-secondary: #D1D5DB;
-  --text-muted: #9CA3AF;
-  
-  --border-light: #374151;
-  --border-medium: #4B5563;
-  --border-dark: #6B7280;
+/* Chat messages trong dark mode */
+[data-theme="dark"] .message.bot {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .message.user {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Input fields */
+[data-theme="dark"] .chat-input,
+[data-theme="dark"] .journal-input,
+[data-theme="dark"] .journal-textarea,
+[data-theme="dark"] .caption-input {
+  background: #0f172a;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .chat-input::placeholder,
+[data-theme="dark"] .journal-input::placeholder,
+[data-theme="dark"] .journal-textarea::placeholder,
+[data-theme="dark"] .caption-input::placeholder {
+  color: #64748b;
+}
+
+/* Cards hover effect */
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .entry-card:hover,
+[data-theme="dark"] .photo-card:hover {
+  background: #2d3748;
+}
+
+/* Button states */
+[data-theme="dark"] .btn-save:disabled,
+[data-theme="dark"] .btn-auth:disabled {
+  background: #475569;
+  color: #94a3b8;
+}
+
+/* Modal trong dark mode */
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Empty states */
+[data-theme="dark"] .empty-state {
+  color: #94a3b8;
+}
+
+/* Mood tabs */
+[data-theme="dark"] .mood-tab,
+[data-theme="dark"] .filter-tab,
+[data-theme="dark"] .filter-btn {
+  background: #0f172a;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .mood-tab:hover,
+[data-theme="dark"] .filter-tab:hover,
+[data-theme="dark"] .filter-btn:hover {
+  background: #1e293b;
+  border-color: var(--primary);
+}
+
+/* Sidebar icons */
+[data-theme="dark"] .sidebar-icon {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .sidebar-icon:hover {
+  background: #2d3748;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .sidebar-icon.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Header */
+[data-theme="dark"] .header {
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+/* Mood selector buttons */
+[data-theme="dark"] .mood-btn {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .mood-btn.selected {
+  background: rgba(28, 216, 210, 0.15);
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .mood-btn:hover {
+  background: #1e293b;
+}
+
+/* Upload box */
+[data-theme="dark"] .upload-box {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .upload-box:hover {
+  border-color: var(--primary);
+  background: rgba(28, 216, 210, 0.05);
+}
+
+/* Streak badge */
+[data-theme="dark"] .streak-badge {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  box-shadow: 0 4px 12px rgba(255, 107, 109, 0.3);
+}
+
+/* Entry cards */
+[data-theme="dark"] .entry-card {
+  background: #1e293b;
+}
+
+[data-theme="dark"] .entry-header {
+  border-bottom-color: #334155;
+}
+
+/* Photo grid */
+[data-theme="dark"] .photo-card {
+  background: #1e293b;
+}
+
+/* Replay modal */
+[data-theme="dark"] .replay-modal {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="dark"] .view-modal {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* Auth page gradient trong dark mode */
+[data-theme="dark"] body.auth-page {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+}
+
+/* Settings modal */
+[data-theme="dark"] .settings-user {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .settings-item {
+  border-bottom-color: #334155;
 }

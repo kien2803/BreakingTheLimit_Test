@@ -5,59 +5,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Cảo Dễ Thương</title>
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <script src="js/darkmode.js"></script>
 </head>
+
+<style>
+  .nav-icon {
+    width: 25px;
+  }
+</style>
+
+<script>
+  // Kiểm tra đăng nhập
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  if (!currentUser) {
+    // Chưa đăng nhập → về trang login
+    window.location.href = 'login.html';
+  } else {
+    // Đã đăng nhập → hiển thị thông tin user
+    console.log('👤 Logged in as:', currentUser.username);
+
+    // Cập nhật username trên header (nếu có element)
+    const logoText = document.querySelector('.header-logo span');
+    if (logoText) {
+      logoText.textContent = currentUser.username;
+    }
+
+    // Cập nhật avatar
+    const avatar = document.querySelector('.header-avatar');
+    if (avatar) {
+      avatar.textContent = currentUser.role === 'family' ? '👨‍👩‍👧' : '👤';
+    }
+  }
+
+  // Hàm đăng xuất
+  function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+  }
+</script>
 
 <body>
 
   <!-- ==================== SIDEBAR ==================== -->
   <aside class="sidebar">
     <div class="sidebar-icon">☰</div>
-    <div class="sidebar-icon active">🏠</div>
-    <div class="sidebar-icon">💬</div>
-    <div class="sidebar-icon">📄</div>
-    <div class="sidebar-icon">🖼️</div>
-    <div class="sidebar-icon">📅</div>
-    <div class="sidebar-icon">🏡</div>
+    <a href="dashboard.html">
+      <div class="sidebar-icon active"><i class="fi fi-sr-home"></i></div>
+    </a>
+    <a href="chat.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-comment-alt-dots"></i></div>
+    </a>
+    <a href="journal.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-document"></i></div>
+    </a>
+    <a href="photos.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+    <div class="sidebar-icon"><i class="fi fi-sr-calendar"></i></div>
+    <div class="sidebar-icon"><i class="fi fi-sr-house-chimney"></i></div>
 
     <div class="sidebar-spacer"></div>
 
-    <div class="sidebar-icon">👤</div>
+    <div class="sidebar-icon"><i class="fi fi-sr-user"></i></div>
   </aside>
 
   <!-- ==================== HEADER ==================== -->
   <header class="header">
     <!-- Logo Section -->
     <div class="header-logo">
-      <div class="header-logo-icon">🐱</div>
-      <span>Cảo Dễ Thương</span>
+      <div class="header-logo-icon"></div>
+      <span>Breaking The Limit</span>
     </div>
 
     <!-- Navigation Menu -->
     <nav class="header-nav">
       <div class="nav-item active">
-        <div class="nav-icon">📊</div>
+        <div class="nav-icon"><img src="assets/chart-simple.png" alt=""></div>
         <span>Dashboard</span>
       </div>
       <div class="nav-item">
-        <div class="nav-icon">📖</div>
+        <div class="nav-icon"><img src="assets/book-alt.png" alt=""></div>
         <span>Journal</span>
         <div class="nav-badge">1</div>
       </div>
       <div class="nav-item">
-        <div class="nav-icon">🤖</div>
+        <div class="nav-icon"><img src="assets/user-robot.png" alt=""></div>
         <span>Chat AI</span>
       </div>
       <div class="nav-item">
-        <div class="nav-icon">📸</div>
+        <div class="nav-icon"><img src="assets/camera.png" alt=""></div>
         <span>Photos</span>
       </div>
       <div class="nav-item">
-        <div class="nav-icon">🔗</div>
+        <div class="nav-icon"><img src="assets/link-alt.png" alt=""></div>
         <span>Connections</span>
       </div>
     </nav>
@@ -65,7 +115,7 @@
     <!-- Action Buttons -->
     <div class="header-actions">
       <button class="btn-create">Create Invite Link</button>
-      <div class="header-avatar">👤</div>
+      <div class="header-avatar"><i class="fi fi-sr-user"></i></div>
     </div>
   </header>
 
@@ -86,9 +136,9 @@
               <svg viewBox="0 0 200 200">
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#1CD8D2;stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+                    <stop offset="0%" style="stop-color:#ff7b0000;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#ff7b0078;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FF7A00;stop-opacity:1" />
                   </linearGradient>
                 </defs>
                 <circle cx="100" cy="100" r="80" class="circle-bg" />
@@ -106,7 +156,7 @@
           <div class="mood-chart-section">
             <h4 class="mood-chart-title">Mood Chart</h4>
             <div class="mood-chart-placeholder">
-              📊 Chart sẽ xuất hiện ở đây (Phase 2)
+              <i class="fi fi-sr-chart-simple"></i> Chart sẽ xuất hiện ở đây (Phase 2)
             </div>
           </div>
         </div>
@@ -117,20 +167,22 @@
           <div class="quick-actions-grid">
             <a href="journal.html">
               <button class="action-btn action-primary">
-                <span class="action-btn-icon">✏️</span>
+                <span class="action-btn-icon"><i class="fi fi-sr-pen-clip"></i></span>
                 Write Journal
               </button>
             </a>
-            <button class="action-btn action-secondary">
-              <span class="action-btn-icon">💬</span>
-              Chat with AI
-            </button>
+            <a href="chat.html">
+              <button class="action-btn action-secondary">
+                <span class="action-btn-icon">💬</span>
+                Chat with AI
+              </button>
+            </a>
             <button class="action-btn action-neutral">
-              <span class="action-btn-icon">👥</span>
+              <span class="action-btn-icon"><i class="fi fi-sr-users"></i></span>
               Chat with
             </button>
             <button class="action-btn action-neutral">
-              <span class="action-btn-icon">📸</span>
+              <span class="action-btn-icon"><i class="fi fi-sr-camera"></i></span>
               Upload Photo
             </button>
           </div>
@@ -188,7 +240,7 @@
 
         <!-- CARD 5: Mood Check -->
         <div class="card">
-          <h3 class="card-title">Hôm nay bạn thế nháo?</h3>
+          <h3 class="card-title">Hôm nay bạn thế nào?</h3>
 
           <div class="mood-tabs">
             <button class="mood-tab active">Bình yên</button>
@@ -202,7 +254,7 @@
             <span class="mood-tag play">#vui_bình_yêna</span>
           </div>
 
-          <button class="btn-primary">Gửi suy thiầt yầu yầu</button>
+          <button class="btn-primary">Gửi tâm tư</button>
         </div>
 
         <!-- CARD 6: Latest Memories -->
@@ -244,11 +296,11 @@
           <h3 class="card-title">Drawing Canvas Preview</h3>
 
           <div class="canvas-preview">
-            <div class="canvas-thumbnail">🎨</div>
+            <div class="canvas-thumbnail"><i class="fi fi-sr-palette"></i></div>
           </div>
 
           <div class="canvas-controls">
-            <span class="canvas-play-icon">⏸️</span>
+            <span class="canvas-play-icon"><i class="fi fi-sr-pause"></i></span>
             <span class="canvas-status">Playing Canvas</span>
           </div>
 
@@ -264,6 +316,10 @@
   </main>
 
   <!-- JavaScript (Phase 2) -->
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <script src="js/darkmode.js"></script>
+  <script src="js/settings.js"></script>
   <script src="js/app.js"></script>
 
 </body>

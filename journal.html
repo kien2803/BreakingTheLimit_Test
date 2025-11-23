@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Journal - Breaking The Limit</title>
-  
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/main.css">
-  
+  <link rel="stylesheet" href="css/darkmode.css">
+  <script src="js/darkmode.js"></script>
+
   <style>
     /* Journal Page Specific */
     .journal-container {
@@ -413,25 +418,35 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-icon">☰</div>
-    <a href="dashboard.html"><div class="sidebar-icon">🏠</div></a>
-    <div class="sidebar-icon">💬</div>
-    <div class="sidebar-icon active">📄</div>
-    <div class="sidebar-icon">🖼️</div>
-    <div class="sidebar-icon">📅</div>
-    <div class="sidebar-icon">🏡</div>
+    <a href="dashboard.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-home"></i></div>
+    </a>
+    <a href="chat.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-comment-alt-dots"></i></div>
+    </a>
+    <a href="journal.html">
+      <div class="sidebar-icon active"><i class="fi fi-sr-document"></i></div>
+    </a>
+    <a href="">
+      <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+
+    <div class="sidebar-icon"><i class="fi fi-sr-calendar"></i></div>
+    <div class="sidebar-icon"><i class="fi fi-sr-house-chimney"></i></div>
     <div class="sidebar-spacer"></div>
-    <div class="sidebar-icon">👤</div>
+    <div class="sidebar-icon"><i class="fi fi-sr-user"></i></div>
   </aside>
 
   <!-- HEADER -->
   <header class="header">
     <div class="header-logo">
-      <div class="header-logo-icon">🌸</div>
+      <div class="header-logo-icon"></div>
       <span>Breaking The Limit</span>
     </div>
     <div class="header-actions">
@@ -456,7 +471,7 @@
       <!-- Write Section -->
       <div class="write-section">
         <h2 class="section-title">Hôm nay bạn cảm thấy thế nào?</h2>
-        
+
         <!-- Mood Selector -->
         <div class="mood-selector" id="moodSelector">
           <button class="mood-btn" data-mood="happy">
@@ -490,11 +505,8 @@
         </div>
 
         <!-- Textarea -->
-        <textarea 
-          class="journal-textarea" 
-          id="journalInput"
-          placeholder="Viết những suy nghĩ của bạn ở đây... Đừng ngại, đây là không gian riêng của bạn 💙"
-        ></textarea>
+        <textarea class="journal-textarea" id="journalInput"
+          placeholder="Viết những suy nghĩ của bạn ở đây... Đừng ngại, đây là không gian riêng của bạn 💙"></textarea>
 
         <!-- Footer -->
         <div class="write-footer">
@@ -538,6 +550,11 @@
   <!-- Toast -->
   <div class="toast" id="toast">Đã lưu!</div>
 
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <script src="js/darkmode.js"></script>
+  <script src="js/settings.js"></script>
   <script src="js/journal.js"></script>
 </body>
+
 </html>
