@@ -1,5 +1,10 @@
 /* ==========================================
-   DARK MODE TOGGLE BUTTON
+   DARK MODE - FIXED VERSION
+   Thay thế nội dung file css/darkmode.css
+   ========================================== */
+
+/* ==========================================
+   1. DARK MODE TOGGLE BUTTON
    ========================================== */
 
 .theme-toggle {
@@ -34,53 +39,300 @@
   transform: rotate(20deg);
 }
 
-/* Animation khi chuyển theme */
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+/* ==========================================
+   2. SMOOTH TRANSITIONS
+   ========================================== */
 
+body,
 .card,
 .auth-box,
 .upload-box,
-.photo-card {
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+.photo-card,
+.entry-card,
+.message,
+.sidebar,
+.header {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Fix cho modal trong dark mode */
-[data-theme="dark"] .modal-box,
-[data-theme="dark"] .modal-content {
+/* ==========================================
+   3. DARK MODE STYLES
+   ========================================== */
+
+[data-theme="dark"] {
+  /* Background Colors */
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --bg-sidebar: #1e293b;
+  --bg-hover: #334155;
+  
+  /* Text Colors - Đảm bảo contrast tốt */
+  --text-primary: #f1f5f9;      /* Trắng sáng */
+  --text-secondary: #cbd5e1;    /* Xám nhạt */
+  --text-muted: #94a3b8;        /* Xám */
+  --text-white: #ffffff;
+  
+  /* Border Colors */
+  --border-light: #334155;
+  --border-medium: #475569;
+  --border-dark: #64748b;
+  
+  /* Keep Primary Colors - GIỮ NGUYÊN MÀU CAM */
+  --primary: #FF7A00;
+  --primary-dark: #E56700;
+  --primary-light: #FFE5D0;
+  
+  --secondary: #A855F7;
+  --accent: #FF6B9D;
+  
+  /* Status Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  
+  /* Mood Colors */
+  --mood-joy: #FFB6C1;
+  --mood-calm: #7BC5E5;
+  --mood-sad: #B8B8FF;
+  --mood-angry: #FF9999;
+  --mood-neutral: #94A3B8;
+  
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   4. FORCE BODY BACKGROUND
+   ========================================== */
+
+[data-theme="dark"] body {
+  background: var(--bg-main) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ==========================================
+   5. COMPONENTS OVERRIDE
+   ========================================== */
+
+/* Chat Messages */
+[data-theme="dark"] .message.bot {
+  background: #2d3748;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .message.user {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* All Input Fields */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .chat-input,
+[data-theme="dark"] .journal-input,
+[data-theme="dark"] .journal-textarea,
+[data-theme="dark"] .caption-input,
+[data-theme="dark"] .form-input {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+/* Placeholders */
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] .chat-input::placeholder,
+[data-theme="dark"] .journal-textarea::placeholder,
+[data-theme="dark"] .caption-input::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+/* Cards */
+[data-theme="dark"] .card,
+[data-theme="dark"] .entry-card,
+[data-theme="dark"] .photo-card {
   background: var(--bg-card);
   color: var(--text-primary);
 }
 
-[data-theme="dark"] .modal-header {
-  border-bottom-color: var(--border-light);
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .entry-card:hover,
+[data-theme="dark"] .photo-card:hover {
+  background: #2d3748;
 }
 
-[data-theme="dark"] .form-input {
-  background: var(--bg-main);
-  color: var(--text-primary);
+/* Modals */
+[data-theme="dark"] .modal-box,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .settings-box {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Sidebar & Header */
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .header {
+  background: var(--bg-card);
   border-color: var(--border-light);
 }
 
-[data-theme="dark"] .form-input::placeholder {
-  color: var(--text-muted);
+[data-theme="dark"] .sidebar-icon {
+  color: #cbd5e1;
 }
 
-/* Fix cho auth page gradient background */
+[data-theme="dark"] .sidebar-icon:hover {
+  background: #2d3748;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .sidebar-icon.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-save:disabled,
+[data-theme="dark"] .btn-auth:disabled {
+  background: #475569;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .mood-btn,
+[data-theme="dark"] .filter-tab,
+[data-theme="dark"] .filter-btn,
+[data-theme="dark"] .mood-tab {
+  background: #0f172a;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .mood-btn:hover,
+[data-theme="dark"] .filter-tab:hover,
+[data-theme="dark"] .filter-btn:hover {
+  background: #1e293b;
+  border-color: var(--primary);
+}
+
+[data-theme="dark"] .mood-btn.selected,
+[data-theme="dark"] .filter-tab.active,
+[data-theme="dark"] .filter-btn.active {
+  background: rgba(28, 216, 210, 0.15);
+  border-color: var(--primary);
+}
+
+/* Upload Box */
+[data-theme="dark"] .upload-box {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+[data-theme="dark"] .upload-box:hover {
+  border-color: var(--primary);
+  background: rgba(28, 216, 210, 0.05);
+}
+
+/* Empty States */
+[data-theme="dark"] .empty-state {
+  color: #94a3b8;
+}
+
+/* Settings */
+[data-theme="dark"] .settings-user {
+  background: #0f172a;
+}
+
+[data-theme="dark"] .settings-item {
+  border-bottom-color: #334155;
+}
+
+/* Auth Page */
 [data-theme="dark"] body.auth-page {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
 }
 
-/* Fix cho chat input */
-[data-theme="dark"] .chat-input,
-[data-theme="dark"] .journal-input,
-[data-theme="dark"] .caption-input {
-  background: var(--bg-main);
-  color: var(--text-primary);
+/* Entry Header Border */
+[data-theme="dark"] .entry-header {
+  border-bottom-color: #334155;
 }
 
-/* Responsive */
+/* ==========================================
+   6. TEXT CONTRAST FIX
+   ========================================== */
+
+/* Ensure all headings are visible */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Ensure all paragraphs are visible */
+[data-theme="dark"] p {
+  color: var(--text-secondary);
+}
+
+/* Labels */
+[data-theme="dark"] label {
+  color: var(--text-primary) !important;
+}
+
+/* Links */
+[data-theme="dark"] a {
+  color: var(--primary);
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--primary-light);
+}
+
+/* ==========================================
+   7. CONTAINERS BACKGROUND
+   ========================================== */
+
+[data-theme="dark"] .main-container,
+[data-theme="dark"] .dashboard-content,
+[data-theme="dark"] .journal-wrapper,
+[data-theme="dark"] .photos-container,
+[data-theme="dark"] .chat-container,
+[data-theme="dark"] .col-left,
+[data-theme="dark"] .col-right {
+  background: transparent;
+}
+
+[data-theme="dark"] .write-section {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .entries-section {
+  background: transparent;
+}
+
+/* ==========================================
+   8. REPLAY/VIEW MODALS
+   ========================================== */
+
+[data-theme="dark"] .replay-modal,
+[data-theme="dark"] .view-modal {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* ==========================================
+   9. RESPONSIVE
+   ========================================== */
+
 @media (max-width: 768px) {
   .theme-toggle {
     bottom: 20px;
@@ -95,58 +347,28 @@ body {
 }
 
 /* ==========================================
-   FIX BODY BACKGROUND
+   10. FORCE TEXT VISIBILITY EVERYWHERE
    ========================================== */
 
-/* Force body background trong dark mode */
-[data-theme="dark"] body {
-  background: var(--bg-main) !important;
+[data-theme="dark"] * {
+  color: inherit;
+}
+
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .page-title,
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .settings-title {
   color: var(--text-primary) !important;
 }
 
-/* Main container */
-[data-theme="dark"] .main-container {
-  background: var(--bg-main);
+[data-theme="dark"] .char-count,
+[data-theme="dark"] .entry-date,
+[data-theme="dark"] .photo-date,
+[data-theme="dark"] .empty-hint {
+  color: var(--text-muted) !important;
 }
 
-/* Fix cho trang journal */
-[data-theme="dark"] .journal-wrapper {
-  background: transparent;
-}
-
-/* Fix cho trang photos */
-[data-theme="dark"] .photos-container {
-  background: transparent;
-}
-
-/* Fix cho chat container */
-[data-theme="dark"] .chat-container {
-  background: var(--bg-main);
-}
-
-/* Write section background */
-[data-theme="dark"] .write-section {
-  background: transparent;
-}
-
-[data-theme="dark"] .write-section .card,
-[data-theme="dark"] .upload-box,
-[data-theme="dark"] .caption-section {
-  background: var(--bg-card);
-}
-
-/* Journal cards */
-[data-theme="dark"] .entries-section {
-  background: var(--bg-card);
-}
-
-/* Dashboard content */
-[data-theme="dark"] .dashboard-content {
-  background: transparent;
-}
-
-/* Col backgrounds */
-[data-theme="dark"] .col-left,
-[data-theme="dark"] .col-right {
-  background: transparent;
-}
+/* ==========================================
+   ✅ DONE - Dark mode hoàn chỉnh!
+   ========================================== */
