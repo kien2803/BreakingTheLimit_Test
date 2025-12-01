@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - Breaking The Limit</title>
+
+    <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+    <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/friends.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-icon">☰</div>
+    <a href="dashboard.html">
+      <div class="sidebar-icon active"><i class="fi fi-sr-home"></i></div>
+    </a>
+    <a href="chat.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-comment-alt-dots"></i></div>
+    </a>
+    <a href="journal.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-document"></i></div>
+    </a>
+    <a href="photos.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+    <a href="friends.html">
+      <div class="sidebar-icon"><i class="fi fi-br-users"></i></div>
+    </a>
+    <a href="family.html">
+      <div class="sidebar-icon"><img src="assets/people-roof.png" alt=""></div>
+    </a>
+    <div class="sidebar-icon"><i class="fi fi-sr-calendar"></i></div>
+    <div class="sidebar-icon"><i class="fi fi-sr-house-chimney"></i></div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-icon"><i class="fi fi-sr-user"></i></div>
+  </aside>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-logo">
+            <div class="header-logo-icon">👥</div>
+            <span>Friends</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn-add-friend" id="btnAddFriend">➕ Thêm bạn</button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-container">
+        <div class="friends-wrapper">
+
+            <!-- Friend Requests -->
+            <section class="requests-section" id="requestsSection">
+                <h2 class="section-title">📬 Lời mời kết bạn (<span id="requestCount">0</span>)</h2>
+                <div class="requests-list" id="requestsList">
+                    <!-- Render by JS -->
+                </div>
+            </section>
+
+            <!-- Friends List -->
+            <section class="friends-section">
+                <h2 class="section-title">👥 Bạn bè (<span id="friendCount">0</span>)</h2>
+                <div class="friends-grid" id="friendsGrid">
+                    <!-- Render by JS -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Add Friend Modal -->
+    <div class="modal-overlay" id="addFriendModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>➕ Thêm bạn</h3>
+                <button class="modal-close" id="closeAddFriend">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- My Invite Link -->
+                <div class="invite-section">
+                    <h4>🔗 Link của bạn</h4>
+                    <p class="section-desc">Chia sẻ link này để người khác kết bạn với bạn</p>
+                    <div class="link-box">
+                        <input type="text" id="myInviteLink" class="link-input" readonly>
+                        <button class="btn-copy" id="btnCopyLink">📋</button>
+                    </div>
+                </div>
+
+                <!-- Or -->
+                <div class="divider">
+                    <span>HOẶC</span>
+                </div>
+
+                <!-- Add by Link -->
+                <div class="add-section">
+                    <h4>➕ Thêm bạn bằng link</h4>
+                    <p class="section-desc">Dán link mời từ bạn bè</p>
+                    <div class="input-group">
+                        <input type="text" id="friendLink" class="friend-input" placeholder="Dán link vào đây...">
+                        <button class="btn-send-request" id="btnSendRequest">Gửi lời mời</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Friend Profile Modal -->
+    <div class="modal-overlay" id="friendModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="friendModalName">👤 Profile</h3>
+                <button class="modal-close" id="closeFriendModal">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="profile-section">
+                    <div class="profile-avatar" id="friendAvatar">👤</div>
+                    <h3 id="friendName">Username</h3>
+                    <p id="friendSince" class="friend-since">Bạn bè từ hôm nay</p>
+                </div>
+
+                <div class="profile-stats" id="friendStats">
+                    <!-- Render by JS -->
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn-chat" id="btnChatFriend">💬 Nhắn tin</button>
+                    <button class="btn-unfriend" id="btnUnfriend">💔 Hủy kết bạn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/darkmode.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/friends.js"></script>
+</body>
+
+</html>

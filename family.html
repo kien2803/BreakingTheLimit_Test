@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Connection - Breaking The Limit</title>
+
+  <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
+  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/family.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-icon">☰</div>
+    <a href="dashboard.html">
+      <div class="sidebar-icon active"><i class="fi fi-sr-home"></i></div>
+    </a>
+    <a href="chat.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-comment-alt-dots"></i></div>
+    </a>
+    <a href="journal.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-document"></i></div>
+    </a>
+    <a href="photos.html">
+      <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+    <a href="friends.html">
+      <div class="sidebar-icon"><i class="fi fi-br-users"></i></div>
+    </a>
+    <a href="family.html">
+      <div class="sidebar-icon"><img src="assets/people-roof.png" alt=""></div>
+    </a>
+    <div class="sidebar-icon"><i class="fi fi-sr-calendar"></i></div>
+    <div class="sidebar-icon"><i class="fi fi-sr-house-chimney"></i></div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-icon"><i class="fi fi-sr-user"></i></div>
+  </aside>
+
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">
+      <div class="header-logo-icon">🏡</div>
+      <span>Family Connection</span>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-container">
+    <div class="family-wrapper">
+
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">👨‍👩‍👧 Kết nối gia đình</h1>
+        <p class="page-subtitle">Đồng hành cùng con, không kiểm soát</p>
+      </div>
+
+      <!-- Role Check -->
+      <div id="roleCheck"></div>
+
+      <!-- FOR CHILD: Connection Status -->
+      <div id="childView" style="display: none;">
+        <div class="connection-card">
+          <div class="connection-header">
+            <h3>👨‍👩‍👧 Kết nối với gia đình</h3>
+          </div>
+
+          <div id="connectionStatus">
+            <!-- Sẽ render bằng JS -->
+          </div>
+
+          <div class="invite-section">
+            <h4>🔗 Mời cha mẹ kết nối</h4>
+            <p class="invite-desc">Chia sẻ link này với cha mẹ để họ có thể theo dõi cảm xúc của bạn</p>
+            <div class="invite-link-box">
+              <input type="text" id="childInviteLink" class="invite-input" readonly>
+              <button class="btn-copy" id="btnCopyChild">📋 Copy</button>
+            </div>
+          </div>
+
+          <div class="privacy-note">
+            <span class="privacy-icon">🔒</span>
+            <div class="privacy-text">
+              <strong>Quyền riêng tư của bạn:</strong>
+              <p>Gia đình chỉ xem được biểu đồ cảm xúc và mood, KHÔNG xem được nội dung nhật ký</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOR FAMILY: Dashboard -->
+      <div id="familyView" style="display: none;">
+
+        <!-- Connect Child -->
+        <div class="connection-card">
+          <h3>➕ Kết nối với con</h3>
+          <p>Nhập link mời từ con hoặc nhập mã kết nối</p>
+          <div class="connect-input-group">
+            <input type="text" id="connectCode" class="connect-input" placeholder="Dán link hoặc nhập mã...">
+            <button class="btn-connect" id="btnConnect">Kết nối</button>
+          </div>
+        </div>
+
+        <!-- Connected Children -->
+        <div class="children-list" id="childrenList">
+          <!-- Sẽ render bằng JS -->
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Child Detail Modal -->
+  <div class="modal-overlay" id="childModal">
+    <div class="modal-box modal-large">
+      <div class="modal-header">
+        <h3 id="modalChildName">👤 Chi tiết</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Emotion Chart -->
+        <div class="chart-section">
+          <h4>📊 Biểu đồ cảm xúc 7 ngày</h4>
+          <canvas id="childEmotionChart" width="600" height="250"></canvas>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid" id="childStats">
+          <!-- Render bằng JS -->
+        </div>
+
+        <!-- Alert if negative emotions -->
+        <div id="alertSection"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/darkmode.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/family.js"></script>
+</body>
+
+</html>

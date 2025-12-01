@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Cảo Dễ Thương</title>
+  <title>Dashboard - Breaking The Limit</title>
   <link href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet">
   <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
 
@@ -70,6 +70,12 @@
     </a>
     <a href="photos.html">
       <div class="sidebar-icon"><i class="fi fi-sr-picture"></i></div>
+    </a>
+    <a href="friends.html">
+      <div class="sidebar-icon"><i class="fi fi-ss-users"></i></div>
+    </a>
+    <a href="family.html">
+      <div class="sidebar-icon"><img src="assets/people-roof.png" alt=""></div>
     </a>
     <div class="sidebar-icon"><i class="fi fi-sr-calendar"></i></div>
     <div class="sidebar-icon"><i class="fi fi-sr-house-chimney"></i></div>
@@ -158,167 +164,210 @@
             </div>
           </div>
 
-          <!-- Mood Chart -->
           <div class="mood-chart-section">
-            <h4 class="mood-chart-title">Mood Chart</h4>
-            <div class="mood-chart-placeholder">
-              <i class="fi fi-sr-chart-simple"></i> Chart sẽ xuất hiện ở đây (Phase 2)
+            <h4 class="mood-chart-title">Biểu đồ cảm xúc 7 ngày</h4>
+            <canvas id="emotionChart" width="600" height="400"></canvas>
+
+            <div class="emotion-stats">
             </div>
           </div>
+
+          <style>
+            #emotionChart {
+              width: 100%;
+              height: auto;
+              border-radius: var(--radius-md);
+            }
+
+            .emotion-stats {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: var(--spacing-sm);
+              margin-top: var(--spacing-md);
+            }
+
+            .stat-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: var(--spacing-sm);
+              background: var(--bg-main);
+              border-radius: var(--radius-md);
+            }
+
+            .stat-label {
+              font-size: var(--font-size-xs);
+              color: var(--text-muted);
+              margin-bottom: 4px;
+            }
+
+            .stat-value {
+              font-size: var(--font-size-base);
+              font-weight: var(--font-weight-semibold);
+              color: var(--text-primary);
+            }
+
+            @media (max-width: 768px) {
+              .emotion-stats {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+
+          <script src="js/chart.js"></script>
+
+          <!-- CARD 2: Quick Actions -->
+          <div class="card">
+            <h3 class="card-title">Quick Actions</h3>
+            <div class="quick-actions-grid">
+              <a href="journal.html">
+                <button class="action-btn action-primary">
+                  <span class="action-btn-icon"><i class="fi fi-sr-pen-clip"></i></span>
+                  Write Journal
+                </button>
+              </a>
+              <a href="chat.html">
+                <button class="action-btn action-secondary">
+                  <span class="action-btn-icon"><i class="fi fi-sr-comment-alt-dots"></i></span>
+                  Chat with AI
+                </button>
+              </a>
+              <button class="action-btn action-neutral">
+                <span class="action-btn-icon"><i class="fi fi-sr-users"></i></span>
+                Chat with
+              </button>
+              <button class="action-btn action-neutral">
+                <span class="action-btn-icon"><i class="fi fi-sr-camera"></i></span>
+                Upload Photo
+              </button>
+            </div>
+          </div>
+
+          <!-- CARD 3: Connections -->
+          <div class="card">
+            <h3 class="card-title">Connections</h3>
+
+            <div class="connection-section">
+              <h4 class="connection-title">Parent Child</h4>
+
+              <div class="connection-row">
+                <span class="connection-label">Share Mood Data</span>
+                <div class="toggle-switch active"></div>
+              </div>
+
+              <div class="connection-row">
+                <span class="connection-label">Invite Parent</span>
+                <button class="btn-invite">Invite</button>
+              </div>
+            </div>
+
+            <div class="connection-section">
+              <h4 class="connection-title">Friend Connection</h4>
+              <div class="connection-row">
+                <span class="connection-label"></span>
+                <button class="btn-invite">Invite Friend</button>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- CARD 2: Quick Actions -->
-        <div class="card">
-          <h3 class="card-title">Quick Actions</h3>
-          <div class="quick-actions-grid">
-            <a href="journal.html">
-              <button class="action-btn action-primary">
-                <span class="action-btn-icon"><i class="fi fi-sr-pen-clip"></i></span>
-                Write Journal
-              </button>
-            </a>
-            <a href="chat.html">
-              <button class="action-btn action-secondary">
-                <span class="action-btn-icon"><i class="fi fi-sr-comment-alt-dots"></i></span>
-                Chat with AI
-              </button>
-            </a>
-            <button class="action-btn action-neutral">
-              <span class="action-btn-icon"><i class="fi fi-sr-users"></i></span>
-              Chat with
-            </button>
-            <button class="action-btn action-neutral">
-              <span class="action-btn-icon"><i class="fi fi-sr-camera"></i></span>
-              Upload Photo
-            </button>
-          </div>
-        </div>
+        <!-- ========== RIGHT COLUMN ========== -->
+        <div class="col-right">
 
-        <!-- CARD 3: Connections -->
-        <div class="card">
-          <h3 class="card-title">Connections</h3>
+          <!-- CARD 4: AI Chat Friend -->
+          <div class="card card-ai-chat">
+            <h3 class="card-title">AI Chat Friend</h3>
 
-          <div class="connection-section">
-            <h4 class="connection-title">Parent Child</h4>
-
-            <div class="connection-row">
-              <span class="connection-label">Share Mood Data</span>
-              <div class="toggle-switch active"></div>
+            <div class="chat-avatar-section">
+              <div class="chat-avatar">🐱</div>
+              <div class="chat-info">
+                <h4>Kem Buồn</h4>
+                <p>Tell me about your day!</p>
+              </div>
             </div>
 
-            <div class="connection-row">
-              <span class="connection-label">Invite Parent</span>
-              <button class="btn-invite">Invite</button>
+            <div class="chat-input-wrapper">
+              <input type="text" class="chat-input" placeholder="Message">
+              <button class="btn-send">🚀</button>
             </div>
           </div>
 
-          <div class="connection-section">
-            <h4 class="connection-title">Friend Connection</h4>
-            <div class="connection-row">
-              <span class="connection-label"></span>
-              <button class="btn-invite">Invite Friend</button>
+          <!-- CARD 5: Mood Check -->
+          <div class="card">
+            <h3 class="card-title">Hôm nay bạn thế nào?</h3>
+
+            <div class="mood-tabs">
+              <button class="mood-tab active">Bình yên</button>
+              <button class="mood-tab">Căng thẳng</button>
+            </div>
+
+            <div class="mood-tags">
+              <span class="mood-tag">❤️ #vui</span>
+              <span class="mood-tag">🙏 #vui</span>
+              <span class="mood-tag">😊 lính_yên</span>
+              <span class="mood-tag play">#vui_bình_yêna</span>
+            </div>
+
+            <button class="btn-primary">Gửi tâm tư</button>
+          </div>
+
+          <!-- CARD 6: Latest Memories -->
+          <div class="card">
+            <h3 class="card-title">Latest Memories</h3>
+
+            <div class="photo-grid">
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=200" alt="Memory">
+              </div>
+              <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=200" alt="Memory">
+              </div>
+            </div>
+
+            <button class="btn-view-all">View All Photos</button>
+          </div>
+
+          <!-- CARD 7: Drawing Canvas Preview -->
+          <div class="card">
+            <h3 class="card-title">Drawing Canvas Preview</h3>
+
+            <div class="canvas-preview">
+              <div class="canvas-thumbnail"><i class="fi fi-sr-palette"></i></div>
+            </div>
+
+            <div class="canvas-controls">
+              <span class="canvas-play-icon"><i class="fi fi-sr-pause"></i></span>
+              <span class="canvas-status">Playing Canvas</span>
+            </div>
+
+            <div class="canvas-actions">
+              <button class="btn-canvas-invite">Invite Friend</button>
+              <button class="btn-canvas-close">✕</button>
             </div>
           </div>
+
         </div>
 
       </div>
-
-      <!-- ========== RIGHT COLUMN ========== -->
-      <div class="col-right">
-
-        <!-- CARD 4: AI Chat Friend -->
-        <div class="card card-ai-chat">
-          <h3 class="card-title">AI Chat Friend</h3>
-
-          <div class="chat-avatar-section">
-            <div class="chat-avatar">🐱</div>
-            <div class="chat-info">
-              <h4>Kem Buồn</h4>
-              <p>Tell me about your day!</p>
-            </div>
-          </div>
-
-          <div class="chat-input-wrapper">
-            <input type="text" class="chat-input" placeholder="Message">
-            <button class="btn-send">🚀</button>
-          </div>
-        </div>
-
-        <!-- CARD 5: Mood Check -->
-        <div class="card">
-          <h3 class="card-title">Hôm nay bạn thế nào?</h3>
-
-          <div class="mood-tabs">
-            <button class="mood-tab active">Bình yên</button>
-            <button class="mood-tab">Căng thẳng</button>
-          </div>
-
-          <div class="mood-tags">
-            <span class="mood-tag">❤️ #vui</span>
-            <span class="mood-tag">🙏 #vui</span>
-            <span class="mood-tag">😊 lính_yên</span>
-            <span class="mood-tag play">#vui_bình_yêna</span>
-          </div>
-
-          <button class="btn-primary">Gửi tâm tư</button>
-        </div>
-
-        <!-- CARD 6: Latest Memories -->
-        <div class="card">
-          <h3 class="card-title">Latest Memories</h3>
-
-          <div class="photo-grid">
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=200" alt="Memory">
-            </div>
-            <div class="photo-item">
-              <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=200" alt="Memory">
-            </div>
-          </div>
-
-          <button class="btn-view-all">View All Photos</button>
-        </div>
-
-        <!-- CARD 7: Drawing Canvas Preview -->
-        <div class="card">
-          <h3 class="card-title">Drawing Canvas Preview</h3>
-
-          <div class="canvas-preview">
-            <div class="canvas-thumbnail"><i class="fi fi-sr-palette"></i></div>
-          </div>
-
-          <div class="canvas-controls">
-            <span class="canvas-play-icon"><i class="fi fi-sr-pause"></i></span>
-            <span class="canvas-status">Playing Canvas</span>
-          </div>
-
-          <div class="canvas-actions">
-            <button class="btn-canvas-invite">Invite Friend</button>
-            <button class="btn-canvas-close">✕</button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
   </main>
 
   <!-- JavaScript (Phase 2) -->

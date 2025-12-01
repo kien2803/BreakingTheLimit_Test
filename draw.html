@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing - Breaking The Limit</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/draw.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<style>
+    /* ==========================================
+   DRAWING PAGE STYLES
+   ========================================== */
+
+    .draw-container {
+        margin-left: 80px;
+        display: grid;
+        grid-template-columns: 250px 1fr 250px;
+        height: 100vh;
+        gap: 0;
+        background: var(--bg-main);
+    }
+
+    /* ==========================================
+   TOOLBAR (Left)
+   ========================================== */
+
+    .toolbar {
+        background: var(--bg-card);
+        padding: var(--spacing-lg);
+        overflow-y: auto;
+        border-right: 1px solid var(--border-light);
+    }
+
+    .toolbar-title {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-lg);
+        color: var(--text-primary);
+    }
+
+    .toolbar-section {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .toolbar-section h4 {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-secondary);
+    }
+
+    /* Tools */
+    .tool-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+    }
+
+    .tool-btn {
+        aspect-ratio: 1;
+        background: var(--bg-main);
+        border: 2px solid var(--border-light);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-size: 24px;
+        transition: all var(--transition-base);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tool-btn:hover {
+        border-color: var(--primary);
+        transform: scale(1.05);
+    }
+
+    .tool-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+    }
+
+    /* Colors */
+    .color-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .color-btn {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all var(--transition-base);
+    }
+
+    .color-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .color-btn.active {
+        border-color: var(--text-primary);
+        box-shadow: 0 0 0 2px var(--bg-card);
+    }
+
+    .custom-color-input {
+        width: 100%;
+        height: 40px;
+        border: 2px solid var(--border-light);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+    }
+
+    /* Brush Size */
+    .brush-slider {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .size-preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        background: var(--bg-main);
+        border-radius: var(--radius-md);
+    }
+
+    .size-dot {
+        background: var(--text-primary);
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+    /* Actions */
+    .action-btn {
+        width: 100%;
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
+        background: var(--bg-main);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        justify-content: center;
+        font-size: var(--font-size-sm);
+        color: var(--text-primary);
+        transition: all var(--transition-base);
+    }
+
+    .action-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-save-drawing {
+        width: 100%;
+        padding: var(--spacing-md);
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-semibold);
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .btn-save-drawing:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+    }
+
+    /* ==========================================
+   CANVAS AREA (Center)
+   ========================================== */
+
+    .canvas-area {
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-main);
+    }
+
+    .canvas-header {
+        padding: var(--spacing-lg);
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .canvas-header h2 {
+        margin: 0;
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+    }
+
+    .canvas-info {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+    }
+
+    .canvas-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-xl);
+        overflow: auto;
+    }
+
+    #drawingCanvas {
+        border: 2px solid var(--border-medium);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        background: white;
+        cursor: crosshair;
+    }
+
+    /* ==========================================
+   GALLERY SIDEBAR (Right)
+   ========================================== */
+
+    .gallery-sidebar {
+        background: var(--bg-card);
+        padding: var(--spacing-lg);
+        overflow-y: auto;
+        border-left: 1px solid var(--border-light);
+    }
+
+    .gallery-title {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-lg);
+        color: var(--text-primary);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .gallery-item {
+        aspect-ratio: 1;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        cursor: pointer;
+        transition: all var(--transition-base);
+        border: 2px solid var(--border-light);
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-md);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gallery-empty {
+        text-align: center;
+        padding: var(--spacing-2xl);
+        color: var(--text-muted);
+    }
+
+    .gallery-empty-icon {
+        font-size: 48px;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    /* ==========================================
+   VIEW MODAL
+   ========================================== */
+
+    .modal-large {
+        max-width: 800px;
+    }
+
+    .view-drawing-image {
+        width: 100%;
+        border-radius: var(--radius-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .drawing-info {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .drawing-info p {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+    }
+
+    .drawing-actions {
+        display: flex;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-download {
+        flex: 1;
+        padding: var(--spacing-md);
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-semibold);
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .btn-download:hover {
+        background: var(--primary-dark);
+    }
+
+    .btn-delete-drawing {
+        padding: var(--spacing-md) var(--spacing-lg);
+        background: var(--error);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-semibold);
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .btn-delete-drawing:hover {
+        background: #dc2626;
+    }
+
+    /* Toast */
+    .toast {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--success);
+        color: white;
+        padding: var(--spacing-md) var(--spacing-xl);
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-medium);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all var(--transition-base);
+        z-index: 1001;
+    }
+
+    .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .toast.error {
+        background: var(--error);
+    }
+
+    /* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+    @media (max-width: 1024px) {
+        .draw-container {
+            grid-template-columns: 200px 1fr 200px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .draw-container {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .toolbar {
+            border-right: none;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .gallery-sidebar {
+            border-left: none;
+            border-top: 1px solid var(--border-light);
+            max-height: 200px;
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        }
+
+        .tool-group {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+</style>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-icon">☰</div>
+        <a href="dashboard.html">
+            <div class="sidebar-icon">🏠</div>
+        </a>
+        <a href="chat.html">
+            <div class="sidebar-icon">💬</div>
+        </a>
+        <a href="journal.html">
+            <div class="sidebar-icon">📄</div>
+        </a>
+        <a href="photos.html">
+            <div class="sidebar-icon">🖼️</div>
+        </a>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-icon active">🎨</div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="draw-container">
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-section">
+                <h3 class="toolbar-title">🎨 Công cụ</h3>
+
+                <!-- Tools -->
+                <div class="tool-group">
+                    <button class="tool-btn active" data-tool="brush" title="Bút vẽ">
+                        <span>✏️</span>
+                    </button>
+                    <button class="tool-btn" data-tool="eraser" title="Tẩy">
+                        <span>🧹</span>
+                    </button>
+                    <button class="tool-btn" data-tool="line" title="Đường thẳng">
+                        <span>📏</span>
+                    </button>
+                    <button class="tool-btn" data-tool="circle" title="Hình tròn">
+                        <span>⭕</span>
+                    </button>
+                    <button class="tool-btn" data-tool="rect" title="Hình vuông">
+                        <span>▢</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Colors -->
+            <div class="toolbar-section">
+                <h4>🎨 Màu</h4>
+                <div class="color-grid">
+                    <button class="color-btn active" data-color="#000000" style="background: #000000;"></button>
+                    <button class="color-btn" data-color="#FF0000" style="background: #FF0000;"></button>
+                    <button class="color-btn" data-color="#00FF00" style="background: #00FF00;"></button>
+                    <button class="color-btn" data-color="#0000FF" style="background: #0000FF;"></button>
+                    <button class="color-btn" data-color="#FFFF00" style="background: #FFFF00;"></button>
+                    <button class="color-btn" data-color="#FF00FF" style="background: #FF00FF;"></button>
+                    <button class="color-btn" data-color="#00FFFF" style="background: #00FFFF;"></button>
+                    <button class="color-btn" data-color="#FFFFFF"
+                        style="background: #FFFFFF; border: 1px solid #ccc;"></button>
+                    <button class="color-btn" data-color="#FFA500" style="background: #FFA500;"></button>
+                    <button class="color-btn" data-color="#800080" style="background: #800080;"></button>
+                    <button class="color-btn" data-color="#FFC0CB" style="background: #FFC0CB;"></button>
+                    <button class="color-btn" data-color="#A52A2A" style="background: #A52A2A;"></button>
+                </div>
+                <input type="color" id="customColor" class="custom-color-input" value="#000000">
+            </div>
+
+            <!-- Brush Size -->
+            <div class="toolbar-section">
+                <h4>📏 Độ dày</h4>
+                <input type="range" id="brushSize" class="brush-slider" min="1" max="50" value="5">
+                <div class="size-preview">
+                    <div class="size-dot" id="sizePreview"></div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="toolbar-section">
+                <h4>⚡ Hành động</h4>
+                <button class="action-btn" id="btnUndo">
+                    <span>↶</span> Undo
+                </button>
+                <button class="action-btn" id="btnRedo">
+                    <span>↷</span> Redo
+                </button>
+                <button class="action-btn" id="btnClear">
+                    <span>🗑️</span> Xóa hết
+                </button>
+            </div>
+
+            <!-- Save -->
+            <div class="toolbar-section">
+                <button class="btn-save-drawing" id="btnSave">
+                    💾 Lưu tranh
+                </button>
+            </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-area">
+            <div class="canvas-header">
+                <h2>🎨 Vẽ tranh của bạn</h2>
+                <div class="canvas-info">
+                    <span id="canvasSize">800 x 600</span>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="drawingCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Gallery Sidebar -->
+        <div class="gallery-sidebar">
+            <h3 class="gallery-title">🖼️ Tranh của tôi</h3>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Render by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- View Drawing Modal -->
+    <div class="modal-overlay" id="viewModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <h3>🖼️ Chi tiết</h3>
+                <button class="modal-close" id="closeViewModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <img id="viewImage" class="view-drawing-image">
+                <div class="drawing-info">
+                    <p id="drawingDate"></p>
+                </div>
+                <div class="drawing-actions">
+                    <button class="btn-download" id="btnDownload">⬇️ Tải xuống</button>
+                    <button class="btn-delete-drawing" id="btnDelete">🗑️ Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Fabric.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+    <script src="js/darkmode.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/draw.js"></script>
+</body>
+
+</html>

@@ -87,60 +87,66 @@ function checkSaveButton() {
 // ==========================================
 // 4. LƯU NHẬT KÝ
 // ==========================================
-btnSave.addEventListener('click', saveEntry);
-
-function saveEntry() {
+btnSave.addEventListener('click', async function() {
   const content = journalInput.value.trim();
   
   if (!content || !selectedMood) {
-    showToast('Vui lòng chọn mood và viết nội dung!', 'error');
+    showToast('Chọn mood và viết nội dung đã!');
     return;
   }
-
+  
+  // Disable button
+  btnSave.disabled = true;
+  btnSave.textContent = '🔄 Đang phân tích...';
+  
+  // Phân tích cảm xúc (nếu có emotion.js)
+  let analysis = null;
+  if (window.analyzeEmotion) {
+    try {
+      analysis = await window.analyzeEmotion(content, selectedMood);
+    } catch (err) {
+      console.log('Emotion analysis failed:', err);
+    }
+  }
+  
   // Tạo entry mới
   const entry = {
-    id: Date.now(), // Unique ID
-    content: content,
+    id: Date.now(),
     mood: selectedMood,
-    createdAt: new Date().toISOString()
+    content: content,
+    date: new Date().toISOString(),
+    analysis: analysis // Thêm analysis
   };
-
-  // Lấy entries từ localStorage
-  const entries = getEntries();
   
-  // Thêm entry mới vào đầu
+  // Lấy danh sách cũ
+  const entries = getEntries();
   entries.unshift(entry);
   
   // Lưu lại
   localStorage.setItem('journal_entries', JSON.stringify(entries));
-
+  
   // Reset form
   journalInput.value = '';
   charCount.textContent = '0';
   selectedMood = null;
-  moodBtns.forEach(b => b.classList.remove('selected'));
+  moodBtns.forEach(function(b) {
+    b.classList.remove('selected');
+  });
   btnSave.disabled = true;
-
-  // Cập nhật streak
-  updateStreak();
-
-  // Render lại list
+  btnSave.textContent = '💾 Lưu nhật ký';
+  
+  // Cập nhật UI
   renderEntries();
-
-  // Thông báo
+  updateStreak();
   showToast('✅ Đã lưu nhật ký!');
-
-  console.log('Entry saved:', entry);
-}
-
-
-// ==========================================
-// 5. LẤY ENTRIES TỪ LOCALSTORAGE
-// ==========================================
-function getEntries() {
-  const data = localStorage.getItem('journal_entries');
-  return data ? JSON.parse(data) : [];
-}
+  
+  // Hiển thị analysis result
+  if (analysis && window.showAnalysisResult) {
+    setTimeout(() => {
+      window.showAnalysisResult(analysis);
+    }, 500);
+  }
+});
 
 
 // ==========================================

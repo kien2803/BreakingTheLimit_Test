@@ -9,7 +9,7 @@ console.log('💬 Chat loaded!');
 // Lấy tại: https://aistudio.google.com/apikey
 // ==========================================
 
-const GEMINI_API_KEY = 'AIzaSyBbhV0_v6rYq4oeW5KG_PbbUShi0ybCf6k';
+const GEMINI_API_KEY = 'AIzaSyAMTiL6HkGz9oSFnvE9eTY04IEgh_hULbk';
 
 // Kiểm tra đã có API key chưa
 const hasApiKey = GEMINI_API_KEY !== 'your-api-key' && GEMINI_API_KEY.startsWith('AIza');
